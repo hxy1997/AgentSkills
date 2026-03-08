@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: Stock Vote
+  short_description: Role-based stock verdicts on top of daily_stock_analysis
+  default_prompt: Analyze a stock with a predefined role and produce a voting-style verdict.

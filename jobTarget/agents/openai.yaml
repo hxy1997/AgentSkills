@@ -1,0 +1,4 @@
+interface:
+  display_name: "Job Target"
+  short_description: "Analyze role prospects, org signals, and candidate fit"
+  default_prompt: "Use $job-target to analyze a target role with a JD, resume, company context, and candidate priorities."
