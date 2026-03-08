@@ -1,0 +1,6 @@
+﻿name: static-cigar-butt-analyzer
+description: Static-value cigar-butt stock analysis for asset backing, low maintenance burn, and value realization path.
+platforms:
+  - codex
+  - openai
+entry: SKILL.md
