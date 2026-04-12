@@ -4,6 +4,7 @@
 
 - `jobTarget`：社招岗位价值评估、简历匹配、外部信号核验、反问设计
 - `static-cigar-butt-analyzer`：静态价值型烟蒂股分析，适用于净资产折价、资产支撑、控股折价、事件驱动与高股息破净框架
+- `a-share-report-analyzer`：A 股公司分析与估值报告，适用于数据准备、六段正文分析、行业 overlay、同业对比与估值结论
 
 ## 仓库结构
 
@@ -38,6 +39,7 @@ Codex 本地 skills 目录通常在 `$CODEX_HOME/skills/`。把需要的 skill �
 mkdir -p "$CODEX_HOME/skills"
 ln -s "/Users/hexingyuan/CodeProjects/skills/jobTarget" "$CODEX_HOME/skills/jobTarget"
 ln -s "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" "$CODEX_HOME/skills/static-cigar-butt-analyzer"
+ln -s "/Users/hexingyuan/CodeProjects/skills/a-share-report-analyzer" "$CODEX_HOME/skills/a-share-report-analyzer"
 ```
 
 如果不想使用软链，也可以直接复制目录：
@@ -45,6 +47,7 @@ ln -s "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" "$CODEX
 ```bash
 cp -R "/Users/hexingyuan/CodeProjects/skills/jobTarget" "$CODEX_HOME/skills/"
 cp -R "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" "$CODEX_HOME/skills/"
+cp -R "/Users/hexingyuan/CodeProjects/skills/a-share-report-analyzer" "$CODEX_HOME/skills/"
 ```
 
 ### 2. Claude Code
@@ -57,6 +60,7 @@ cp -R "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" "$CODEX
 mkdir -p ~/.claude/skills
 ln -s "/Users/hexingyuan/CodeProjects/skills/jobTarget" ~/.claude/skills/jobTarget
 ln -s "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" ~/.claude/skills/static-cigar-butt-analyzer
+ln -s "/Users/hexingyuan/CodeProjects/skills/a-share-report-analyzer" ~/.claude/skills/a-share-report-analyzer
 ```
 
 项目级安装示例：
@@ -65,6 +69,7 @@ ln -s "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" ~/.clau
 mkdir -p .claude/skills
 ln -s "/Users/hexingyuan/CodeProjects/skills/jobTarget" .claude/skills/jobTarget
 ln -s "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" .claude/skills/static-cigar-butt-analyzer
+ln -s "/Users/hexingyuan/CodeProjects/skills/a-share-report-analyzer" .claude/skills/a-share-report-analyzer
 ```
 
 `claude/CLAUDE.md` 不是必需文件，但用于补充 Claude Code 的推荐调用方式和运行前提。
@@ -79,6 +84,7 @@ Qoder CLI 示例：
 mkdir -p ~/.qoder/skills
 ln -s "/Users/hexingyuan/CodeProjects/skills/jobTarget" ~/.qoder/skills/jobTarget
 ln -s "/Users/hexingyuan/CodeProjects/skills/static-cigar-butt-analyzer" ~/.qoder/skills/static-cigar-butt-analyzer
+ln -s "/Users/hexingyuan/CodeProjects/skills/a-share-report-analyzer" ~/.qoder/skills/a-share-report-analyzer
 ```
 
 QoderWork 示例：
@@ -102,10 +108,13 @@ git clone git@github.com:hxy1997/AgentSkills.git ~/AgentSkills
 ```bash
 ln -s ~/AgentSkills/jobTarget "$CODEX_HOME/skills/jobTarget"
 ln -s ~/AgentSkills/static-cigar-butt-analyzer "$CODEX_HOME/skills/static-cigar-butt-analyzer"
+ln -s ~/AgentSkills/a-share-report-analyzer "$CODEX_HOME/skills/a-share-report-analyzer"
 ln -s ~/AgentSkills/jobTarget ~/.claude/skills/jobTarget
 ln -s ~/AgentSkills/static-cigar-butt-analyzer ~/.claude/skills/static-cigar-butt-analyzer
+ln -s ~/AgentSkills/a-share-report-analyzer ~/.claude/skills/a-share-report-analyzer
 ln -s ~/AgentSkills/jobTarget ~/.qoder/skills/jobTarget
 ln -s ~/AgentSkills/static-cigar-butt-analyzer ~/.qoder/skills/static-cigar-butt-analyzer
+ln -s ~/AgentSkills/a-share-report-analyzer ~/.qoder/skills/a-share-report-analyzer
 ```
 
 ## 平台兼容说明
@@ -115,6 +124,10 @@ ln -s ~/AgentSkills/static-cigar-butt-analyzer ~/.qoder/skills/static-cigar-butt
   - Claude Code: 支持
   - Qoder: 支持
 - `static-cigar-butt-analyzer`
+  - Codex: 支持
+  - Claude Code: 通过 `SKILL.md` 使用
+  - Qoder: 通过 `SKILL.md` 使用
+- `a-share-report-analyzer`
   - Codex: 支持
   - Claude Code: 通过 `SKILL.md` 使用
   - Qoder: 通过 `SKILL.md` 使用
@@ -136,6 +149,17 @@ ln -s ~/AgentSkills/static-cigar-butt-analyzer ~/.qoder/skills/static-cigar-butt
   - `references/workflow.md`
   - `references/accounting-mapping.md`
   - `references/report-template.md`
+
+### `a-share-report-analyzer`
+
+- 面向 A 股个股分析、估值 memo、年报与券商研报综合判断。
+- 采用固定三阶段流程：准备数据、六段正文分析、估值与结论。
+- 强制行业 overlay、利润增长六法、同业对比表、估值区间和模板符合性自检。
+- 当前目录包含：
+  - `SKILL.md`
+  - `references/`
+  - `scripts/`
+  - `tests/`
 
 ## 维护建议
 
