@@ -95,11 +95,18 @@ Read only what you need:
 
 Use bundled scripts when they fit the task:
 
-- `scripts/fetch_analysis_inputs.py` for phase-1 structured inputs from the external data project.
+- `scripts/fetch_analysis_inputs.py` for phase-1 structured inputs from the embedded provider by default, with optional external-project override.
 - `scripts/fetch_stock_universe.py` for refreshing A-share, HK, or US stock universes through Tushare Pro.
 - `scripts/calc_profit_growth.py` for the mandatory six-method profit-growth calculation.
-- `scripts/fetch_peer_snapshot.py` for the mandatory peer comparison baseline table.
+- `scripts/fetch_peer_snapshot.py` for the mandatory peer comparison baseline table, using the embedded provider by default.
 - `scripts/calc_valuation_zone.py` for the mandatory final price-zone and action mapping.
+
+Embedded provider notes:
+
+- The skill now ships with a portable local provider under `portable_data_provider/`.
+- By default, the bundled data scripts do not depend on any absolute path or any other local project.
+- `--project-root` remains available only as an explicit compatibility override when the user wants to point at an external `daily_stock_analysis` checkout.
+- Keep all script logic cross-platform. Do not introduce Windows-only shell assumptions into bundled Python tools.
 
 Load one or more sector references when applicable:
 

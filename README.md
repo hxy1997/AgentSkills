@@ -155,10 +155,12 @@ ln -s ~/AgentSkills/a-share-report-analyzer ~/.qoder/skills/a-share-report-analy
 - 面向 A 股个股分析、估值 memo、年报与券商研报综合判断。
 - 采用固定三阶段流程：准备数据、六段正文分析、估值与结论。
 - 强制行业 overlay、利润增长六法、同业对比表、估值区间和模板符合性自检。
+- 默认使用 skill 内嵌的便携数据 provider，不依赖某台机器上的绝对路径；仅在显式传参时才会回退到外部项目。
 - 当前目录包含：
   - `SKILL.md`
   - `references/`
   - `scripts/`
+  - `portable_data_provider/`
   - `tests/`
 
 ## 维护建议

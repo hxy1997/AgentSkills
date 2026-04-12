@@ -77,6 +77,14 @@ class TestFetchAnalysisInputs(unittest.TestCase):
 
         self.assertIn("project root", str(exc.exception).lower())
 
+    def test_load_manager_uses_embedded_provider_by_default(self):
+        module = _load_module()
+
+        manager = module.load_manager()
+
+        self.assertTrue(hasattr(manager, "get_fundamental_context"))
+        self.assertTrue(hasattr(manager, "get_realtime_quote"))
+
     def test_main_prints_json_payload(self):
         module = _load_module()
 

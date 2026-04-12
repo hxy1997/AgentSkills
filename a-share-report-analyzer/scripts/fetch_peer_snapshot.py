@@ -5,12 +5,11 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
 
 
-DEFAULT_PROJECT_ROOT = Path(r"H:\Project\PyProject\daily_stock_analysis")
+DEFAULT_PROJECT_ROOT = None
 
 FIELD_SETS = {
     "general": ["market_cap", "pe", "pb", "roe", "revenue_yoy", "net_profit_yoy"],
@@ -20,10 +19,23 @@ FIELD_SETS = {
 }
 
 
-def load_manager(project_root: Path):
+def load_manager(project_root: Path | None = None):
+    if project_root is None:
+        skill_root = Path(__file__).resolve().parents[1]
+        import sys
+
+        if str(skill_root) not in sys.path:
+            sys.path.insert(0, str(skill_root))
+        from portable_data_provider import DataFetcherManager
+
+        return DataFetcherManager()
+
     project_root = Path(project_root).resolve()
     if not project_root.exists():
         raise RuntimeError(f"External project root not found: {project_root}")
+
+    import sys
+
     if str(project_root) not in sys.path:
         sys.path.insert(0, str(project_root))
     try:
@@ -118,7 +130,11 @@ def main() -> int:
     parser.add_argument("target_code")
     parser.add_argument("--peers", required=True, help="Comma-separated peer stock codes")
     parser.add_argument("--sector", default="general", choices=sorted(FIELD_SETS.keys()))
-    parser.add_argument("--project-root", default=str(DEFAULT_PROJECT_ROOT))
+    parser.add_argument(
+        "--project-root",
+        default=DEFAULT_PROJECT_ROOT,
+        help="Optional path to an external daily_stock_analysis project; defaults to the embedded provider",
+    )
     parser.add_argument("--budget-seconds", type=float, default=1.5)
     parser.add_argument("--supplemental-json", help="Optional path to supplemental metric JSON")
     args = parser.parse_args()
@@ -130,7 +146,7 @@ def main() -> int:
         supplemental = json.loads(Path(args.supplemental_json).read_text(encoding="utf-8"))
 
     try:
-        manager = load_manager(Path(args.project_root))
+        manager = load_manager(Path(args.project_root) if args.project_root else None)
         payloads = {
             code: build_payload(manager, code, budget_seconds=args.budget_seconds)
             for code in all_codes

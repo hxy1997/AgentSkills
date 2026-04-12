@@ -14,6 +14,14 @@ def _load_module():
 
 
 class TestFetchPeerSnapshot(unittest.TestCase):
+    def test_load_manager_uses_embedded_provider_by_default(self):
+        module = _load_module()
+
+        manager = module.load_manager()
+
+        self.assertTrue(hasattr(manager, "get_fundamental_context"))
+        self.assertTrue(hasattr(manager, "get_realtime_quote"))
+
     def test_build_peer_table_for_general_sector(self):
         module = _load_module()
 

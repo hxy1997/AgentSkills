@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-"""Thin wrapper around the user's daily_stock_analysis project."""
+"""Fetch analysis inputs using the embedded provider or an explicit external project."""
 
 from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 
-
-DEFAULT_PROJECT_ROOT = Path(r"H:\Project\PyProject\daily_stock_analysis")
+DEFAULT_PROJECT_ROOT = None
 
 
 def compact_quote(quote):
@@ -34,11 +32,23 @@ def compact_quote(quote):
     }
 
 
-def load_manager(project_root: Path):
-    """Load DataFetcherManager from the external project root."""
+def load_manager(project_root: Path | None = None):
+    """Load the embedded provider by default, or an explicit external project when requested."""
+    if project_root is None:
+        skill_root = Path(__file__).resolve().parents[1]
+        import sys
+
+        if str(skill_root) not in sys.path:
+            sys.path.insert(0, str(skill_root))
+        from portable_data_provider import DataFetcherManager
+
+        return DataFetcherManager()
+
     project_root = Path(project_root).resolve()
     if not project_root.exists():
         raise RuntimeError(f"External project root not found: {project_root}")
+
+    import sys
 
     if str(project_root) not in sys.path:
         sys.path.insert(0, str(project_root))
@@ -86,8 +96,8 @@ def main() -> int:
     parser.add_argument("stock_code", help="Stock code, for example 600519")
     parser.add_argument(
         "--project-root",
-        default=str(DEFAULT_PROJECT_ROOT),
-        help="Path to the daily_stock_analysis project",
+        default=DEFAULT_PROJECT_ROOT,
+        help="Optional path to an external daily_stock_analysis project; defaults to the embedded provider",
     )
     parser.add_argument(
         "--budget-seconds",
@@ -103,7 +113,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        manager = load_manager(Path(args.project_root))
+        manager = load_manager(Path(args.project_root) if args.project_root else None)
         payload = build_payload(
             manager,
             args.stock_code,
