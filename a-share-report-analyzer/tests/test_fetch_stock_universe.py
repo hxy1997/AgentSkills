@@ -17,6 +17,11 @@ def _load_module():
 
 
 class TestFetchStockUniverse(unittest.TestCase):
+    def test_tushare_endpoint_uses_https(self):
+        module = _load_module()
+
+        self.assertTrue(module.TUSHARE_PRO_API.startswith("https://"))
+
     def test_query_tushare_posts_expected_payload(self):
         module = _load_module()
         response = MagicMock(

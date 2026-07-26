@@ -1,0 +1,111 @@
+{
+  "anchor_id": "global_enterprise_software_cloud_ai_platform",
+  "display_name": "全球企业软件/云计算/AI平台",
+  "sector": "全球软件与云计算",
+  "sub_industry": "企业软件、超大规模云、生产力平台与AI基础设施",
+  "aliases": [
+    "Microsoft",
+    "MSFT",
+    "MSFT.US",
+    "微软",
+    "enterprise software cloud AI platform",
+    "global enterprise software cloud ai platform",
+    "Azure Microsoft 365 Copilot"
+  ],
+  "last_updated": "2026-07-22",
+  "next_review_due": "2026-10-20",
+  "refresh_interval_days": 90,
+  "current_cycle_state": "Enterprise cloud and generative-AI demand remain the central growth drivers while AI data-center capex, depreciation, power availability, and the timing of Copilot monetization determine near-term free-cash-flow conversion and valuation duration risk.",
+  "primary_anchor": {
+    "method": "segment SOTP plus normalized forward PE",
+    "weight": "high",
+    "reason": "Productivity software, Azure infrastructure/platform services, security, gaming, search, and hardware have different growth, margin, and capital-intensity profiles. Segment economics and normalized operating earnings are more informative than a single historical multiple."
+  },
+  "secondary_anchors": [
+    {
+      "method": "normalized forward FCF yield",
+      "weight": "high",
+      "reason": "Tests whether recurring software and cloud cash generation compensates for the current AI infrastructure capex and depreciation cycle."
+    },
+    {
+      "method": "scenario DCF",
+      "weight": "medium",
+      "reason": "Makes the duration sensitivity to Azure growth, cloud gross margin, capex intensity, terminal growth, and discount rates explicit."
+    },
+    {
+      "method": "peer-adjusted forward PE and EV/FCF",
+      "weight": "medium",
+      "reason": "Useful only after adjusting Alphabet, Amazon, Oracle, and Salesforce for cloud mix, advertising exposure, capital intensity, and margin structure."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "net-cash-adjusted market multiple",
+      "role": "balance-sheet and downside sanity check",
+      "reason": "Net cash supports resilience but does not capture the value or risk of recurring software, Azure, distribution, and AI infrastructure."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "static historical PE percentile only",
+      "reason": "Business mix, AI capex, rates, and growth duration changed materially; a historical percentile cannot establish intrinsic value by itself."
+    },
+    {
+      "method": "single cloud revenue multiple",
+      "reason": "Microsoft includes mature high-margin software, cloud infrastructure, gaming, search, and devices with different economics."
+    }
+  ],
+  "anchor_switch_rationale": "Raise FCF-yield weight as AI capex and depreciation normalize. Raise scenario-DCF weight when rate sensitivity or long-dated AI monetization dominates. Use SOTP whenever segment growth or margins diverge materially.",
+  "valid_when": [
+    "segment revenue and operating income are available",
+    "Azure and commercial remaining performance obligation growth are disclosed",
+    "AI capex, depreciation, cloud capacity constraints, and FCF conversion are modeled",
+    "stock-based compensation and net share-count change are reconciled"
+  ],
+  "invalid_when": [
+    "Azure growth or commercial bookings deteriorate for multiple quarters without an offsetting margin benefit",
+    "AI infrastructure utilization fails to justify capex and depreciation",
+    "material antitrust, cloud-licensing, export-control, or cybersecurity remedies impair economics",
+    "Copilot monetization or enterprise renewal assumptions fail materially"
+  ],
+  "peer_set": [
+    "Alphabet",
+    "Amazon",
+    "Oracle",
+    "Salesforce"
+  ],
+  "market_pricing_language": [
+    "Azure and other cloud services growth",
+    "commercial RPO and bookings",
+    "Microsoft 365 Commercial seats and ARPU",
+    "Copilot adoption and monetization",
+    "cloud gross margin",
+    "AI capex, depreciation, and capacity availability",
+    "free cash flow conversion and stock-based compensation"
+  ],
+  "key_cycle_indicators": [
+    "US real yields and enterprise IT budgets",
+    "Azure growth and capacity constraints",
+    "commercial RPO and renewal behavior",
+    "AI infrastructure capex and depreciation",
+    "cloud gross margin and FCF conversion",
+    "net share-count change after buybacks and SBC",
+    "antitrust, cloud licensing, cybersecurity, and export controls"
+  ],
+  "confidence": "medium_high",
+  "sources": [
+    {
+      "name": "Microsoft FY2025 Annual Report",
+      "url": "https://www.microsoft.com/investor/reports/ar25/index.html"
+    },
+    {
+      "name": "Microsoft FY2026 Q3 earnings materials",
+      "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast"
+    },
+    {
+      "name": "SEC Company Facts for Microsoft Corporation",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+    }
+  ],
+  "analyst_notes": "Do not treat announced AI demand as realized value. Reconcile Azure growth, RPO, capacity, cloud margin, capex, depreciation, FCF, SBC, executed buybacks, and net share-count change in the same scenario set."
+}

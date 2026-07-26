@@ -10,8 +10,10 @@ Use this checklist for the mandatory industry overlay research. This is the pref
 4. Which accounting items or financial ratios are easy to misread in this industry?
 5. What valuation methods are commonly used in this sub-industry, and in what situations?
 6. What are the main cycle drivers, policy drivers, and competitive forces?
-7. Which risk factors should be elevated above the generic framework?
-8. Which parts of the generic framework should be downweighted?
+7. Which monetary-policy, real-yield, FX, liquidity, commodity-price, or financing variables materially affect the sub-industry?
+8. What is the exact transmission path from those external variables to earnings, cash flow, and valuation?
+9. Which risk factors should be elevated above the generic framework?
+10. Which parts of the generic framework should be downweighted?
 
 ## Expected output
 
@@ -22,6 +24,7 @@ The research output should be concise and structured:
 - key KPIs
 - accounting or reporting cautions
 - valuation anchors
+- external-variable dependency map and monetary-policy transmission when material
 - main risk drivers
 - how to modify the generic framework
 

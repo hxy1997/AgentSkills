@@ -46,11 +46,16 @@ Focus on:
 - cycle location
 - capacity additions
 - inventory and utilization trends
+- spot, realized, and cycle-normalized price
+- attributable production and price sensitivity
+- real yields, FX, liquidity, and demand when they drive the commodity cycle
+- royalties, taxes, minority interests, JV ownership, hedging, and unit-cost disclosure
 
 ## Valuation reminders
 
 - Stable mature businesses often fit `PE` or `DCF`.
 - Asset-heavy cyclicals may need `PB`, normalized earnings, or cycle-adjusted multiples.
+- Commodity producers normally need a bear/base/bull price deck and a NAV/DCF or normalized-earnings sensitivity; do not hide the cycle inside a generic consensus haircut.
 - Early-stage or margin-transition businesses may need `PS` or `EV/Sales`.
 
 Always use the industry overlay checklist to refine these defaults.

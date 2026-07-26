@@ -1,0 +1,130 @@
+{
+  "anchor_id": "optical_networks_inp",
+  "display_name": "光通信设备/相干光网络/磷化铟光子集成",
+  "sector": "通信设备/硬科技",
+  "sub_industry": "光通信设备、相干光网络、磷化铟光子集成与数据中心互联",
+  "aliases": [
+    "光通信",
+    "光网络",
+    "相干光",
+    "相干光通信",
+    "磷化铟",
+    "InP",
+    "PIC",
+    "photonic integrated circuit",
+    "coherent optics",
+    "optical networks",
+    "data center interconnect",
+    "optical_networks_inp"
+  ],
+  "last_updated": "2026-06-01",
+  "next_review_due": "2026-09-09",
+  "refresh_interval_days": 100,
+  "current_cycle_state": "AI cluster and cloud interconnect demand is lifting optical-network orders, especially coherent pluggables, line systems, DSPs, and vertically integrated photonic components. Market pricing is rewarding AI-and-cloud optical exposure, but near-term earnings may lag because capacity, InP fab ramp, and product sampling/volume timing require investment.",
+  "primary_anchor": {
+    "method": "EV/Sales or PS with normalized margin bridge",
+    "weight": "high",
+    "reason": "When AI optical demand is accelerating and earnings are distorted by acquisition integration, fab ramp, R&D, and capacity investment, revenue exposure and credible normalized operating-margin path are more informative than trailing PE alone."
+  },
+  "secondary_anchors": [
+    {
+      "method": "normalized PE / EV-EBIT",
+      "weight": "medium",
+      "reason": "Useful once management guidance or normalized margin targets can be defended. For mature telecom equipment portions, normalized profit still matters."
+    },
+    {
+      "method": "peer EV/Sales and PS dispersion",
+      "weight": "medium",
+      "reason": "Useful for checking how much premium the market pays for AI optical exposure versus diversified telecom equipment."
+    },
+    {
+      "method": "SOTP",
+      "weight": "medium",
+      "reason": "Useful when the group combines mature mobile networks, patent licensing, IP routing, optical systems, and InP/PIC optionality."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "floor and balance-sheet stress check",
+      "reason": "Book value does not capture DSP, PIC, customer qualification, or optical roadmap value, but it helps identify downside support and balance-sheet strain."
+    },
+    {
+      "method": "dividend yield",
+      "role": "mature-business support",
+      "reason": "Useful only for mature telecom-equipment cash return, not for valuing the AI optical growth option."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single-period trailing PE",
+      "reason": "Trailing earnings can be depressed by acquisition integration, R&D, fab ramp, restructuring, or one-time tax items and can understate or overstate normalized power."
+    },
+    {
+      "method": "mechanical profit CAGR",
+      "reason": "A series with tax reversals, restructuring, acquisition effects, and cycle troughs should not mechanically determine a growth-stock valuation."
+    }
+  ],
+  "anchor_switch_rationale": "The sector has moved from telecom capex replacement-cycle pricing toward AI data-center interconnect pricing. For companies with real optical-network and InP/PIC exposure, the market currently emphasizes AI-cloud order growth, book-to-bill, capacity lead times, vertical integration, DSP/PIC roadmap, and normalized margin bridge. For diversified telecom vendors, SOTP is needed because mobile infrastructure and patent licensing deserve different multiples.",
+  "valid_when": [
+    "AI and cloud optical orders remain strong and book-to-bill is above one",
+    "optical-network revenue growth is visibly above group growth",
+    "InP/PIC manufacturing ramp improves supply control without material yield failures",
+    "new coherent DSP/pluggable/line-system products reach sampling and volume milestones",
+    "peer multiples continue to reward AI optical exposure"
+  ],
+  "invalid_when": [
+    "AI data-center capex slows or optical lead times normalize abruptly",
+    "new InP capacity ramp misses yield, cost, or delivery milestones",
+    "revenue growth is driven mainly by channel pull-forward rather than repeat cloud demand",
+    "customer concentration or hyperscaler bargaining power compresses margins",
+    "market valuation language reverts to mature telecom equipment PE/dividend yield"
+  ],
+  "peer_set": [
+    "NOK Nokia",
+    "CIEN Ciena",
+    "ERIC Ericsson",
+    "CSCO Cisco"
+  ],
+  "market_pricing_language": [
+    "AI & Cloud customer growth",
+    "optical order intake and book-to-bill",
+    "coherent DSP roadmap",
+    "InP/PIC vertical integration and capacity",
+    "EV/Sales or PS versus normalized margin bridge",
+    "SOTP discount for diversified telecom exposure"
+  ],
+  "key_cycle_indicators": [
+    "AI data-center capex and DCI demand",
+    "Optical Networks revenue growth",
+    "AI & Cloud customer sales mix",
+    "book-to-bill and backlog",
+    "InP fab ramp timing/yield/capex",
+    "gross margin and operating margin bridge",
+    "peer PS/EV-Sales dispersion"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "Nokia Q1 2026 interim report",
+      "url": "https://www.nokia.com/newsroom/nokia-corporation-interim-report-for-q1-2026/"
+    },
+    {
+      "name": "Nokia Q4 2025 and full-year 2025 financial report",
+      "url": "https://www.nokia.com/newsroom/nokia-corporation-financial-report-for-q4-2025-and-full-year-2025/"
+    },
+    {
+      "name": "Nokia-Infinera acquisition announcement",
+      "url": "https://www.nokia.com/about-us/news/releases/2024/06/27/inside-information-nokia-to-acquire-infinera-to-increase-scale-in-Optical-Networks-and-accelerate-product-roadmap/"
+    },
+    {
+      "name": "Nokia launches application-optimized optical solutions for AI-era networks",
+      "url": "https://www.nokia.com/newsroom/nokia-launches-suite-of-applicationoptimized-optical-solutions-for-AI-era-networks/"
+    },
+    {
+      "name": "StockAnalysis peer valuation snapshot",
+      "url": "https://stockanalysis.com/stocks/nok/financials/ratios/"
+    }
+  ],
+  "analyst_notes": "Update quarterly or immediately after Nokia's Q2/Q3 2026 results, a material AI-cloud order revision, optical peer multiple reset, or disclosure of InP fab ramp/yield issues."
+}

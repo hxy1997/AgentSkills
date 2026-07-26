@@ -12,7 +12,7 @@ from pathlib import Path
 import requests
 
 
-TUSHARE_PRO_API = "http://api.tushare.pro"
+TUSHARE_PRO_API = "https://api.tushare.pro"
 
 
 def query_tushare(token: str, api_name: str, params: dict | None = None, timeout: int = 20):

@@ -21,6 +21,8 @@ Cover:
 - industry development logic and cycle attribute
 - business model and main profit sources
 - capital or working-capital pattern
+- material announcements that clarify or change the business structure
+- broker-report consensus and disagreement about the business model
 - business clarity score
 
 ### 2. 经营稳定性
@@ -31,6 +33,10 @@ Cover:
 - revenue and profit volatility
 - internal operating risks
 - external environment sensitivity
+- macro-news and policy sensitivity, including rates, FX, commodity prices, demand cycle, regulation, and geopolitical shocks when material
+- when decision-useful, distinguish policy expectations, real yields, FX, liquidity, and demand effects instead of using a one-line rate rule
+- K-line volatility, drawdown, liquidity, and abnormal-trading evidence
+- capital-flow and chip-pressure evidence, especially lockup expiry, margin pressure, and block trades
 - stability score
 
 ### 3. 定价权
@@ -40,6 +46,9 @@ Cover:
 - source of pricing power
 - customer positioning and stickiness
 - evidence of premium pricing or weak pricing
+- macro or policy variables that change price power, such as commodity price cycle, tariffs, subsidies, price controls, procurement policy, or capacity restrictions
+- for price-taking commodity companies, separate external benchmark pricing from cost-curve, grade, recovery, and product-mix advantages
+- announcement or report evidence that supports or contradicts pricing power
 - pricing-power score
 
 ### 4. 成长分析
@@ -50,6 +59,10 @@ Cover:
 - whether those drivers are repeatable
 - capacity or capability expansion
 - order backlog or project reserve where relevant
+- macro or policy catalysts that change demand runway, financing conditions, project execution, or valuation duration
+- for commodity-driven growth, separate volume growth from commodity-price inflation and show whether the price assumption is spot, realized, or cycle-normalized
+- broker-report EPS forecast direction and estimate dispersion
+- company announcements about orders, capacity, projects, M&A, incentives, or guidance
 - growth sustainability coefficient when useful
 - growth score
 
@@ -69,6 +82,9 @@ Cover:
 - concentration and market position
 - substitutes and barriers to entry
 - main competitors
+- industry-report evidence about supply-demand, price cycle, and valuation anchors
+- macro-policy evidence that changes industry supply-demand balance, entry barriers, or cross-border competition
+- monetary-policy and FX evidence when they change global demand, financing, inventories, or the cost of capital
 - competition score
 
 Hard requirements:
@@ -91,6 +107,8 @@ At minimum assess:
 - profit quality
 - cash-flow quality
 - financial-statement consistency or red flags
+- announcement-driven red flags: pledges, guarantees, lawsuits, inquiry letters, penalties, related-party transactions, refinancing, or audit changes
+- capital-flow/chip signals that may affect short-term financial risk, such as margin balance jumps, lockup expiry, and concentrated block trades
 - overall financial-quality score
 
 ## Integration rule
@@ -98,6 +116,8 @@ At minimum assess:
 Do not write the industry overlay as a detached appendix. Instead:
 
 - inject industry KPIs into the relevant section
+- inject K-line, macro-news/policy, research-report, capital-flow/chip, and announcement evidence into the section where it changes the judgment
+- inject the external-variable dependency map and shock ledger when monetary policy, FX, liquidity, or commodity prices materially affect the company
 - change metric weights when the sector demands it
 - explain why the generic method is insufficient
 

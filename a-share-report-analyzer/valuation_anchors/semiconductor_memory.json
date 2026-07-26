@@ -1,0 +1,117 @@
+{
+  "anchor_id": "semiconductor_memory",
+  "display_name": "半导体存储芯片",
+  "sector": "半导体",
+  "sub_industry": "Fabless 利基型/中小容量存储芯片设计",
+  "aliases": [
+    "存储",
+    "存储芯片",
+    "半导体存储",
+    "利基型存储",
+    "中小容量存储",
+    "memory",
+    "semiconductor_memory",
+    "NAND",
+    "NOR",
+    "DRAM"
+  ],
+  "last_updated": "2026-05-25",
+  "next_review_due": "2026-08-23",
+  "refresh_interval_days": 100,
+  "current_cycle_state": "AI server and high-end memory demand are tightening global memory supply; niche memory is being repriced through spillover supply-demand effects, but its demand curve is not identical to HBM or server DRAM.",
+  "primary_anchor": {
+    "method": "PS / EV-Sales",
+    "weight": "high",
+    "reason": "Break-even transitions and inventory-cycle accounting make near-term PE unstable; revenue scale, gross-margin recovery, and product/customer validation are more informative in the current memory upcycle."
+  },
+  "secondary_anchors": [
+    {
+      "method": "normalized PE",
+      "weight": "medium",
+      "reason": "Use cycle-normalized revenue and margin once profitability has restarted but is not yet stable."
+    },
+    {
+      "method": "SOTP",
+      "weight": "medium",
+      "reason": "Separate mature storage products from strategic investments and early-stage connectivity/compute options."
+    },
+    {
+      "method": "peer PS / EV-Sales dispersion",
+      "weight": "medium",
+      "reason": "Useful for checking whether the market is paying for revenue scale, AI spillover, localization, or short-term profit."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "asset floor and inventory-risk check",
+      "reason": "Fabless IP and customer certification are not fully reflected in book value; inventory impairment can also distort book value."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "static PE",
+      "reason": "Not decision-useful when trailing earnings are negative, near zero, or dominated by inventory write-down/reversal."
+    },
+    {
+      "method": "mechanical profit CAGR",
+      "reason": "Loss years and break-even crossings make six-method profit CAGR unstable; use revenue, gross profit, and normalized margins instead."
+    }
+  ],
+  "anchor_switch_rationale": "Traditional memory-cycle valuation often leans on PB or trough/peak PE. In the current cycle, AI-driven capacity allocation and memory-price recovery have shifted market focus toward revenue scale, gross-margin repair, supply access, and normalized earnings power. PB remains a floor check rather than the primary language.",
+  "valid_when": [
+    "memory pricing is rising or supply remains tight",
+    "gross margin is recovering and inventory impairment pressure is easing",
+    "revenue growth reflects real shipment/customer adoption rather than channel stuffing",
+    "cash burn is manageable and balance sheet can support R&D through the cycle"
+  ],
+  "invalid_when": [
+    "memory contract prices roll over for multiple quarters",
+    "inventory days or impairment provisions rise faster than revenue",
+    "gross margin recovery is mainly from write-down reversal rather than new-product economics",
+    "peer-market valuation shifts back to trough PB or cash-burn liquidation logic",
+    "large new supply is scheduled to enter and pricing power weakens"
+  ],
+  "peer_set": [
+    "603986.SH 兆易创新",
+    "301308.SZ 江波龙",
+    "688525.SH 佰维存储",
+    "688123.SH 聚辰股份"
+  ],
+  "market_pricing_language": [
+    "AI and server demand spillover",
+    "memory-price recovery",
+    "gross-margin inflection",
+    "domestic substitution",
+    "customer certification and product mix",
+    "inventory quality"
+  ],
+  "key_cycle_indicators": [
+    "DRAM/NAND contract-price trend",
+    "inventory days and inventory impairment ratio",
+    "gross margin by product line",
+    "revenue growth split between volume, ASP, and mix",
+    "wafer supply and foundry cost trend",
+    "customer certification progress"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "SIA global semiconductor sales and memory growth data",
+      "url": "https://www.semiconductors.org/"
+    },
+    {
+      "name": "WSTS semiconductor market forecast",
+      "url": "https://www.wsts.org/"
+    },
+    {
+      "name": "TrendForce memory contract-price and supply-demand commentary",
+      "url": "https://www.trendforce.cn/"
+    },
+    {
+      "name": "Company annual and interim reports for target and peers",
+      "url": "official disclosures"
+    }
+  ],
+  "analyst_notes": "Update quarterly or immediately after a memory-price rollover, major AI/server capex revision, peer valuation regime change, or large inventory impairment signal."
+}
