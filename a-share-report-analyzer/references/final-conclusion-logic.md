@@ -7,7 +7,7 @@ Use this reference together with `scripts/calc_valuation_zone.py`.
 - `M`: current market cap
 - `B`: intrinsic market cap
 - `C`: safety-margin market cap
-- `G`: company-quality coefficient
+- `G`: company-quality coefficient, defined as `clamp(weighted_score_10 / 10, 0.4, 1.0)`
 - `dev_5y`: 5-year valuation deviation
 - `dev_10y`: 10-year valuation deviation
 
@@ -31,13 +31,15 @@ Use this reference together with `scripts/calc_valuation_zone.py`.
 - `LOW <= avg_dev <= UP`: `中价`
 - `avg_dev > UP`: `高价`
 
-## Action mapping
+## Research-stance mapping
 
 | 公司质量 | 低价 | 中价 | 高价 |
 | --- | --- | --- | --- |
-| 好公司 | 强烈买入 | 持有 | 观望 |
-| 中公司 | 谨慎买入 | 中性 | 减持 |
-| 差公司 | 高风险观察 | 卖出 | 清仓 |
+| 好公司 | 估值偏低，组合增配复核 | 估值合理，维持复核 | 估值偏高，等待复核 |
+| 中公司 | 估值偏低，谨慎复核 | 估值合理，中性复核 | 估值偏高，降配复核 |
+| 差公司 | 高风险观察 | 质量风险复核 | 高风险降配复核 |
+
+This is a research stance, not an executable trade instruction. Portfolio actions require the separate portfolio strategy engine, current weights, risk constraints, and user review.
 
 ## Price interval
 
@@ -58,6 +60,6 @@ The final conclusion must show:
 - `E`, `F`, `avg_dev`, `LOW`, `UP`
 - company-quality bucket
 - price bucket
-- action
+- research stance
 - model-implied market-cap interval
 - model-implied price interval

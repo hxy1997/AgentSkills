@@ -1,0 +1,111 @@
+{
+  "anchor_id": "global_cloud_ecommerce_ad_ai_platform",
+  "display_name": "全球云计算/电商/广告/AI基础设施平台",
+  "sector": "全球互联网/云计算/AI基础设施",
+  "sub_industry": "大型云计算、电商平台、广告平台和自研AI加速器基础设施",
+  "aliases": [
+    "Amazon",
+    "AMZN",
+    "云计算电商广告AI基础设施",
+    "cloud ecommerce advertising AI infrastructure",
+    "global cloud ecommerce ad ai platform",
+    "hyperscaler ecommerce advertising platform",
+    "AWS retail advertising Trainium"
+  ],
+  "last_updated": "2026-06-01",
+  "next_review_due": "2026-08-30",
+  "refresh_interval_days": 90,
+  "current_cycle_state": "Hyperscaler AI capex is accelerating. Market pricing gives high value to cloud AI capacity, advertising monetization, and operating leverage, but heavily discounts companies when free cash flow is temporarily depressed by data-center and accelerator investment.",
+  "primary_anchor": {
+    "method": "SOTP with normalized PE/FCF for cloud, advertising, and retail operating profit",
+    "weight": "high",
+    "reason": "Amazon-like platforms combine businesses with very different margin, growth, and capital intensity. AWS and advertising deserve higher normalized earnings or FCF multiples than first-party retail; consolidated GAAP PE can be distorted by equity investment gains and AI capex cycles."
+  },
+  "secondary_anchors": [
+    {
+      "method": "normalized PE",
+      "weight": "medium",
+      "reason": "Useful when net income is adjusted for large non-operating gains and losses, and when AWS plus advertising growth supports a higher-than-market multiple."
+    },
+    {
+      "method": "EV/Sales and segment revenue multiple cross-check",
+      "weight": "medium",
+      "reason": "Helpful when FCF is temporarily depressed by AI infrastructure capex; revenue quality differs by segment and must be weighted."
+    },
+    {
+      "method": "FCF yield on normalized post-capex cash flow",
+      "weight": "medium",
+      "reason": "AI data-center buildout can delay FCF, so reported TTM FCF yield should be treated as a stress metric rather than a sole valuation anchor."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "balance-sheet sanity check",
+      "reason": "Book value partly reflects data-center assets and working capital but misses AWS franchise, advertising marketplace, software ecosystem, and logistics network value."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "static GAAP PE only",
+      "reason": "GAAP earnings can include large non-operating gains such as mark-to-market investment gains, while AI capex can depress FCF. Static PE alone misreads normalized economics."
+    },
+    {
+      "method": "single retail PS multiple",
+      "reason": "Amazon is not a pure retailer. AWS, advertising, third-party marketplace services, subscriptions, logistics, and chips have different economics."
+    }
+  ],
+  "anchor_switch_rationale": "Use SOTP or normalized PE when AWS, advertising, and third-party services drive profit growth. Increase FCF-yield weight once AI capex stabilizes. Increase revenue or capacity multiple weight when AI infrastructure demand is visibly outrunning near-term earnings.",
+  "valid_when": [
+    "the company has material cloud infrastructure, marketplace, advertising, and AI compute exposure",
+    "segment revenue and operating income are available",
+    "current capex cycle and FCF compression are disclosed",
+    "non-operating investment gains or losses are adjusted before applying earnings multiples"
+  ],
+  "invalid_when": [
+    "AI infrastructure demand weakens sharply or capacity becomes oversupplied",
+    "AWS growth decelerates below hyperscaler peers for several quarters",
+    "advertising growth or marketplace take-rate materially deteriorates",
+    "regulation forces structural separation of cloud, marketplace, or advertising assets"
+  ],
+  "peer_set": [
+    "Microsoft",
+    "Alphabet",
+    "Meta Platforms",
+    "Walmart",
+    "Alibaba"
+  ],
+  "market_pricing_language": [
+    "AWS growth and operating margin",
+    "advertising services growth",
+    "AI capex and FCF conversion",
+    "custom silicon adoption such as Trainium and Graviton",
+    "retail operating leverage",
+    "normalized earnings excluding investment marks"
+  ],
+  "key_cycle_indicators": [
+    "cloud revenue growth",
+    "AI accelerator supply and utilization",
+    "capital expenditures and data-center power availability",
+    "operating cash flow and free cash flow",
+    "advertising growth",
+    "retail unit economics and fulfillment cost leverage",
+    "regulatory and antitrust pressure"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "Amazon 2025 Annual Report",
+      "url": "https://s2.q4cdn.com/299287126/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf"
+    },
+    {
+      "name": "Amazon Q1 2026 Earnings Release",
+      "url": "https://s2.q4cdn.com/299287126/files/doc_earnings/2026/q1/earnings-result/AMZN-Q1-2026-Earnings-Release.pdf"
+    },
+    {
+      "name": "SEC company facts for Amazon.com, Inc.",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+    }
+  ],
+  "analyst_notes": "For Amazon, the key valuation question is no longer simply retail scale. It is whether AWS AI infrastructure, Trainium adoption, advertising growth, and retail operating leverage can convert massive capex into durable normalized FCF."
+}

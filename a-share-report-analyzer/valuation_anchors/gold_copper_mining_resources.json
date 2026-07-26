@@ -1,0 +1,126 @@
+{
+  "anchor_id": "gold_copper_mining_resources",
+  "display_name": "黄金/铜矿资源开发与冶炼",
+  "sector": "有色金属",
+  "sub_industry": "黄金、铜矿资源开发、冶炼及综合矿业",
+  "aliases": [
+    "黄金铜矿",
+    "金铜矿业",
+    "铜金矿业",
+    "贵金属矿业",
+    "铜矿资源",
+    "综合矿业",
+    "矿产金",
+    "矿产铜",
+    "gold_mining",
+    "copper_mining",
+    "integrated_mining"
+  ],
+  "last_updated": "2026-06-08",
+  "next_review_due": "2026-12-15",
+  "refresh_interval_days": 190,
+  "current_cycle_state": "2025-2026年金价和铜价处于高景气阶段，央行购金、实际利率预期、ETF资金、铜矿供给扰动和电网/新能源/数据中心需求共同影响市场定价。市场对优质矿企既看当期利润弹性，也更重视资源储量、成本曲线、项目爬坡和周期中枢价格下的可持续现金流。",
+  "primary_anchor": {
+    "method": "NAV/DCF with cycle-normalized gold and copper price deck",
+    "weight": "high",
+    "reason": "矿业企业的核心价值来自长寿命资源资产的跨周期现金流。当前金铜价格处于高位，单年PE容易把周期高点利润当作永续盈利；NAV/DCF能把产量曲线、成本、capex、税费、矿山寿命和价格中枢放入同一框架。"
+  },
+  "secondary_anchors": [
+    {
+      "method": "EV/EBITDA or normalized PE peer comparison",
+      "weight": "medium",
+      "reason": "适合跨市场或A股同业比较，可弱化折旧摊销、资本结构和并购节奏差异；但需要把矿山利润与冶炼加工收入区分开。"
+    },
+    {
+      "method": "cycle-adjusted PE",
+      "weight": "medium",
+      "reason": "当公司盈利为正且稳产资产占比较高时，PE可以表达市场对利润的定价；但必须用中枢金铜价格或未来两到三年正常化利润，而非单季高景气利润。"
+    },
+    {
+      "method": "resource optionality SOTP",
+      "weight": "low-to-medium",
+      "reason": "资源量、储量、待投产项目和早期勘探资产可以作为SOTP补充，尤其适合解释优质长寿命矿和扩产项目的溢价。"
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB adjusted by reserve quality and ROE",
+      "role": "asset floor and downside check",
+      "reason": "PB能观察重资产矿企的账面安全垫，但矿权、资源量、品位、地缘风险和成本曲线通常不能被账面净资产完整表达。"
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single-period trailing PE only",
+      "reason": "当期利润受金价、铜价、汇率、套保、公允价值、资源税费和权益项目利润影响，单一TTM PE可能误读周期位置。"
+    },
+    {
+      "method": "pure revenue or PS multiple",
+      "reason": "冶炼和贸易收入规模大但利润率低，收入不能代表资源端盈利能力。"
+    },
+    {
+      "method": "mechanical profit CAGR only",
+      "reason": "利润序列往往叠加商品价格周期、并购、项目投产和减值，机械CAGR必须被周期中枢价格和产量兑现校准。"
+    }
+  ],
+  "anchor_switch_rationale": "以周期中枢价格下的NAV/DCF为主锚；当可获得可靠同行EV/EBITDA和正常化PE时作为交叉验证；在周期底部或资产安全垫讨论中提高PB权重；在早期项目和资源扩张期以SOTP补充。",
+  "valid_when": [
+    "公司主业为金、铜或相关金属矿山资源开发，且矿山端利润是主要价值来源",
+    "可获得资源量、储量、产量指引、成本、capex或至少可形成合理中周期假设",
+    "金铜价格未发生需要立即重估中枢价格的重大制度性变化",
+    "权益产量、少数股东权益和联营/JV口径可被识别或保守估计"
+  ],
+  "invalid_when": [
+    "公司价值主要来自冶炼、贸易或金融投资，而非矿山资源端",
+    "金价、铜价、实际利率、美元或铜矿供需发生重大 regime shift",
+    "重大矿难、环保处罚、采矿权变化、税制调整、主权风险或项目停产改变矿山现金流",
+    "大额并购、资产减值、资源储量重估或资本开支计划显著改变NAV"
+  ],
+  "peer_set": [
+    "601899.SH",
+    "600489.SH",
+    "000975.SZ",
+    "600547.SH",
+    "2899.HK",
+    "NEM.US",
+    "FCX.US"
+  ],
+  "market_pricing_language": [
+    "周期中枢金价和铜价下的NAV/DCF",
+    "EV/EBITDA和正常化PE",
+    "资源量、储量、矿山寿命和权益产量",
+    "成本曲线、AISC和项目爬坡兑现",
+    "地缘、环保安全、税费和少数股东权益风险"
+  ],
+  "key_cycle_indicators": [
+    "LBMA金价、COMEX金价、实际利率、美元指数和央行购金",
+    "LME铜价、TC/RC、全球铜矿产量、精炼铜库存和电网/新能源/数据中心需求",
+    "主要矿山项目的投产爬坡、品位、回收率和单位成本",
+    "矿业资本开支、资源税费、环保安监和主权风险事件",
+    "公司经营现金流、成长性capex和少数股东权益占比"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "紫金矿业2025业绩网页",
+      "url": "https://www.zijinmining.com/investor/2025-newyeji.htm"
+    },
+    {
+      "name": "紫金矿业2026年第一季度报告",
+      "url": "https://www.zijinmining.com/upload/file/2026/04/21/8159c3353d9842b4b03209a7d410695f.pdf"
+    },
+    {
+      "name": "World Gold Council non-GAAP metrics guide",
+      "url": "https://www.gold.org/goldhub/research/non-gaap-metrics-guide"
+    },
+    {
+      "name": "World Gold Council Gold Demand Trends Q1 2026",
+      "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q1-2026"
+    },
+    {
+      "name": "ICSG press releases",
+      "url": "https://icsg.org/press-releases/"
+    }
+  ],
+  "analyst_notes": "用于紫金矿业等金铜综合矿企时，应拆分矿山端与冶炼端：矿山端按资源现金流组合估值，冶炼端按加工利润和低毛利属性降权。下一次复核重点为2026年中报、金铜价格中枢、Kamoa-Kakula和巨龙二期爬坡、AISC披露、主要海外项目政治与安全风险。"
+}

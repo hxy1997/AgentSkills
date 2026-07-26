@@ -1,0 +1,104 @@
+{
+  "anchor_id": "ai_cloud_neocloud_infrastructure",
+  "display_name": "AI云/Neocloud算力基础设施",
+  "sector": "科技基础设施",
+  "sub_industry": "AI云、GPU云、Neocloud、AI基础设施即服务",
+  "aliases": [
+    "AI cloud",
+    "neocloud",
+    "GPU cloud",
+    "AI infrastructure as a service",
+    "AI云",
+    "GPU云",
+    "算力云"
+  ],
+  "last_updated": "2026-06-01",
+  "next_review_due": "2026-08-30",
+  "refresh_interval_days": 90,
+  "current_cycle_state": "AI训练和推理需求仍处高景气，但行业估值语言已从单纯收入增速转向已签约收入能见度、GPU供给、数据中心交付节奏、资本开支融资能力和单位经济性。",
+  "primary_anchor": {
+    "method": "EV/Sales or PS with contracted ARR and normalized EBITDA margin bridge",
+    "weight": "high",
+    "reason": "AI云公司扩张期利润和自由现金流通常被GPU、数据中心和电力容量资本开支压低，TTM利润不能代表稳态盈利能力。收入、已签约容量、ARR能见度和中期EBITDA/FCF转化路径更能解释市场定价。"
+  },
+  "secondary_anchors": [
+    {
+      "method": "peer EV/Sales and forward sales comparison",
+      "weight": "medium",
+      "reason": "CoreWeave、Oracle云基础设施、云厂商AI基础设施业务和GPU云同业能提供市场对AI算力收入的倍数区间。"
+    },
+    {
+      "method": "scenario DCF on contracted capacity",
+      "weight": "medium",
+      "reason": "只有在资本开支、融资成本、折旧、电力成本、GPU利用率和客户合同期限可被估计时适用；适合作为交叉验证。"
+    },
+    {
+      "method": "normalized EBITDA multiple",
+      "weight": "low-to-medium",
+      "reason": "当利用率和折旧进入稳定期后，EBITDA更有解释力；当前仍需用情景假设桥接。"
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "asset floor and leverage stress check",
+      "reason": "账面资产能反映部分现金、GPU、数据中心和债务压力，但不能完整体现客户合同、供给锁定和软件平台价值。"
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single-period trailing PE",
+      "reason": "净利润可被一次性投资收益、汇兑、融资和资产处置扭曲，扩张期经营利润仍可能为负。"
+    },
+    {
+      "method": "mechanical profit CAGR",
+      "reason": "利润序列包含亏损、资产重组和非经营性收益，不能机械外推。"
+    }
+  ],
+  "anchor_switch_rationale": "若合同收入开始稳定兑现、利用率提升且FCF转正，权重可从PS/EV-Sales转向正常化EBITDA或FCF；若AI资本开支周期下修或融资成本上行，PB和杠杆压力的权重上升。",
+  "valid_when": [
+    "AI训练/推理需求和客户预付款或长期合同仍支撑收入能见度",
+    "公司能持续获得GPU、数据中心容量和项目融资",
+    "收入增速能逐步转化为正EBITDA和可防守的单位经济性"
+  ],
+  "invalid_when": [
+    "GPU供给或数据中心交付显著延迟",
+    "大客户合同取消、重定价或集中度风险上升",
+    "债务融资成本上升导致资本开支无法滚动",
+    "行业供给过剩使GPU云价格和利用率下行"
+  ],
+  "peer_set": [
+    "CRWV CoreWeave",
+    "ORCL Oracle",
+    "AMZN Amazon AWS",
+    "MSFT Microsoft Azure"
+  ],
+  "market_pricing_language": "市场主要看前瞻收入/ARR、已签约容量、GPU供给和数据中心交付速度；TTM PE和当期FCF只适合作为风险约束。",
+  "key_cycle_indicators": [
+    "AI云ARR和合同收入覆盖率",
+    "GPU和数据中心上线节奏",
+    "客户集中度和合同期限",
+    "资本开支、债务融资和现金消耗",
+    "EBITDA margin、OCF和FCF转正路径"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "Nebius Group Q1 2026 financial results",
+      "url": "https://nebius.com/newsroom/nebius-reports-first-quarter-2026-financial-results"
+    },
+    {
+      "name": "Nebius Group investor relations",
+      "url": "https://ir.nebius.com/"
+    },
+    {
+      "name": "StockAnalysis NBIS statistics and valuation",
+      "url": "https://stockanalysis.com/stocks/nbis/statistics/"
+    },
+    {
+      "name": "StockAnalysis NBIS financial statements",
+      "url": "https://stockanalysis.com/stocks/nbis/financials/"
+    }
+  ],
+  "analyst_notes": "该锚用于扩张期AI云基础设施公司。估值应以EV/Sales或PS为主，并用中期EBITDA、FCF和杠杆承受力约束。"
+}

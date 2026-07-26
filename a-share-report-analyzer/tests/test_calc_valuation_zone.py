@@ -34,8 +34,34 @@ class TestCalcValuationZone(unittest.TestCase):
         self.assertAlmostEqual(result["UP"], 0.1339, places=3)
         self.assertEqual(result["quality_bucket"], "中公司")
         self.assertEqual(result["price_bucket"], "中价")
-        self.assertEqual(result["action"], "中性")
+        self.assertEqual(result["stance"], "估值合理，中性复核")
         self.assertLess(result["lower_price"], result["upper_price"])
+
+    def test_quality_score_mapping_and_boundaries(self):
+        module = _load_module()
+
+        self.assertAlmostEqual(module.quality_score_to_g(8.6), 0.86)
+        with self.assertRaises(ValueError):
+            module.calculate_valuation_zone(
+                current_market_cap=100,
+                current_price=10,
+                intrinsic_market_cap=110,
+                safe_market_cap=90,
+                quality_score_g=0,
+                dev_5y=0,
+                dev_10y=0,
+            )
+
+        with self.assertRaises(ValueError):
+            module.calculate_valuation_zone(
+                current_market_cap=100,
+                current_price=10,
+                intrinsic_market_cap=110,
+                safe_market_cap=90,
+                quality_score_g=0.1,
+                dev_5y=0,
+                dev_10y=0,
+            )
 
 
 if __name__ == "__main__":

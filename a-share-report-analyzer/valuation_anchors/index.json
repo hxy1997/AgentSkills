@@ -1,0 +1,15 @@
+{
+  "description": "Versioned valuation-anchor tables for A-share report analyzer.",
+  "default_refresh_interval_days": 100,
+  "usage": "Run scripts/check_valuation_anchor.py after confirming sub-industry. If expired or missing, update/create the matching anchor before final valuation.",
+  "anchors": [
+    "joint_stock_commercial_bank",
+    "global_enterprise_software_cloud_ai_platform",
+    "global_cloud_ecommerce_ad_ai_platform",
+    "ai_cloud_neocloud_infrastructure",
+    "semiconductor_memory",
+    "semiconductor_packaging_test",
+    "technology_generic",
+    "hk_property_management_services"
+  ]
+}

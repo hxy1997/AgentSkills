@@ -1,0 +1,121 @@
+{
+  "anchor_id": "pop_toy_ip_retail",
+  "display_name": "潮玩IP/收藏玩具/盲盒零售",
+  "sector": "可选消费/品牌零售",
+  "sub_industry": "潮玩IP运营、收藏玩具、盲盒零售、IP衍生品与海外直营渠道",
+  "aliases": [
+    "潮玩",
+    "盲盒",
+    "收藏玩具",
+    "IP零售",
+    "IP运营",
+    "pop toy",
+    "collectible toy",
+    "blind box",
+    "designer toy",
+    "pop_toy_ip_retail"
+  ],
+  "last_updated": "2026-06-01",
+  "next_review_due": "2026-09-09",
+  "refresh_interval_days": 100,
+  "current_cycle_state": "The sector is being repriced from China discretionary retail toward global IP consumer brands. Pop Mart's 2025 growth was driven by THE MONSTERS/Labubu, plush products, overseas channels, online conversion, and operating leverage, but the market is also discounting potential post-viral normalization and IP concentration risk.",
+  "primary_anchor": {
+    "method": "forward PE with IP durability and overseas-growth adjustment",
+    "weight": "high",
+    "reason": "For profitable IP-led retailers with high gross margin, strong cash conversion, and asset-light expansion, earnings power is decision-useful. The multiple must be adjusted for IP concentration, repeat-purchase quality, overseas store economics, and margin sustainability."
+  },
+  "secondary_anchors": [
+    {
+      "method": "PEG / growth-adjusted PE",
+      "weight": "medium",
+      "reason": "Useful when growth decelerates from an explosive base and the market debates whether the IP portfolio can compound beyond a single viral character."
+    },
+    {
+      "method": "PS or EV/Sales with normalized margin bridge",
+      "weight": "medium",
+      "reason": "Useful during rapid overseas scale-up when revenue visibility is better than long-run margin, but should be bridged to normalized profit margin."
+    },
+    {
+      "method": "peer premium/discount versus global toy and IP brands",
+      "weight": "medium",
+      "reason": "Useful to compare Pop Mart's growth and margins against Sanrio, Mattel, Hasbro, Miniso, and other brand-retail comparables."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "balance-sheet floor only",
+      "reason": "Book value does not capture owned IP, fan community, product design capability, and channel data. Use only to check downside balance-sheet support."
+    },
+    {
+      "method": "DCF",
+      "role": "scenario cross-check",
+      "reason": "Long-run cash flows depend heavily on IP renewal and viral-cycle duration, so DCF should be scenario-based rather than a single-point anchor."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single-year trailing PE without normalization",
+      "reason": "A viral IP year can make trailing earnings unusually high or low relative to sustainable earnings power."
+    },
+    {
+      "method": "pure retail store-count multiple",
+      "reason": "Store count misses online conversion, IP portfolio quality, overseas fan accumulation, and licensing/content optionality."
+    }
+  ],
+  "anchor_switch_rationale": "The current market pricing language has shifted from domestic blind-box retail to global IP brand optionality. The primary anchor remains forward PE because the company is highly profitable and cash generative, but the correct multiple depends on whether Labubu/THE MONSTERS becomes a durable global franchise or reverts after a viral cycle.",
+  "valid_when": [
+    "revenue growth remains supported by multiple IPs rather than one character only",
+    "overseas revenue grows with improving repeat purchase and store-level economics",
+    "gross margin stays high without excessive scarcity marketing or channel backlash",
+    "inventory turnover and discounting remain controlled",
+    "cash conversion remains close to reported profit"
+  ],
+  "invalid_when": [
+    "THE MONSTERS/Labubu demand normalizes sharply without successor IPs",
+    "overseas fan acquisition stalls or quarter-on-quarter revenue declines persist",
+    "inventory turnover days rise materially and markdowns appear",
+    "platform fees, freight, tariffs, or counterfeit controls compress margins",
+    "regulatory or consumer backlash affects blind-box mechanics"
+  ],
+  "peer_set": [
+    "9992.HK Pop Mart",
+    "9896.HK Miniso",
+    "8136.T Sanrio",
+    "MAT Mattel",
+    "HAS Hasbro"
+  ],
+  "market_pricing_language": [
+    "owned IP durability",
+    "THE MONSTERS/Labubu concentration",
+    "overseas store and online channel growth",
+    "gross margin and operating leverage",
+    "inventory turnover and scarcity management",
+    "forward PE and PEG"
+  ],
+  "key_cycle_indicators": [
+    "same-store sales and online conversion",
+    "revenue mix by IP",
+    "overseas revenue growth by region",
+    "inventory turnover days",
+    "gross margin and selling-expense ratio",
+    "member repeat purchase and fan accumulation",
+    "secondary-market heat and counterfeit pressure"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "Pop Mart 2025 annual report / annual results announcement",
+      "url": "https://financialreports.eu/filings/pop-mart-international-group-limited/annual-report/2026/33036792/"
+    },
+    {
+      "name": "Pop Mart Q1 2026 business update coverage",
+      "url": "https://www.scmp.com/business/china-business/article/3353323/pop-mart-expands-ip-empire-debut-dessert-store-hebei-province"
+    },
+    {
+      "name": "StockAnalysis HKG:9992 valuation and financial snapshot",
+      "url": "https://stockanalysis.com/quote/hkg/9992/financials/ratios/"
+    }
+  ],
+  "analyst_notes": "Update after 2026 interim results or earlier if overseas revenue declines sequentially again, THE MONSTERS revenue concentration changes materially, or the market rerates global IP peers."
+}

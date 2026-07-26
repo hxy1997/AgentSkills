@@ -1,0 +1,83 @@
+{
+  "anchor_id": "smart_hardware_odm_jdm",
+  "display_name": "智能硬件 ODM/JDM",
+  "sector": "电子",
+  "sub_industry": "智能硬件 ODM/JDM 与电子制造服务",
+  "aliases": [
+    "智能硬件ODM",
+    "智能硬件JDM",
+    "电子制造ODM",
+    "EMS",
+    "消费电子ODM",
+    "AI终端ODM"
+  ],
+  "last_updated": "2026-06-03",
+  "next_review_due": "2026-10-01",
+  "refresh_interval_days": 120,
+  "current_cycle_state": "AI手机、AI PC、服务器与汽车电子增量提高市场对平台型ODM/JDM厂商成长性的关注，但行业仍受大客户项目节奏、终端需求和低毛利制造属性约束。",
+  "primary_anchor": {
+    "method": "PE",
+    "preferred_variant": "TTM PE / next-year forward PE",
+    "normal_range": "25x-35x for scaled leaders with visible AI-terminal or server growth; lower for low-growth pure assembly peers",
+    "why": "该子行业已盈利且利润可观察，市场主要以规模、客户结构、产品结构升级和费用杠杆兑现后的盈利倍数定价。"
+  },
+  "secondary_anchors": [
+    {
+      "method": "EV/EBITDA",
+      "why": "用于交叉验证制造资产、折旧摊销和营运资本周期对利润的影响。"
+    },
+    {
+      "method": "PS",
+      "why": "在利润率阶段性受产品切换、扩产或客户项目影响时，用收入规模与毛利率路径做辅助校验。"
+    },
+    {
+      "method": "PEG",
+      "why": "当未来两年盈利增长可见度较高时，用于判断高PE是否由成长性支撑。"
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "why": "资产周转和供应链金融属性强，但核心价值不主要来自可重估资产，PB只适合作为资产底线和ROE一致性检查。"
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "long-horizon DCF as sole anchor",
+      "why": "客户项目、产品代际和营运资本波动较大，长期现金流单点预测误差较高。"
+    }
+  ],
+  "anchor_switch_rationale": "若利润率稳定、AI终端/服务器收入占比提升并带来可持续ROE，PE/PEG权重上升；若利润率下行或经营现金流持续背离净利润，应下调PE并提高EV/EBITDA、PS与现金流折扣权重。",
+  "valid_when": [
+    "公司保持正利润且ROE处于可比同业中高水平",
+    "大客户项目和新产品导入带来收入增长可见度",
+    "经营现金流没有连续多个年度显著弱于净利润"
+  ],
+  "invalid_when": [
+    "终端需求明显下行或大客户项目丢失",
+    "毛利率、净利率持续下滑导致利润增长失真",
+    "存货、应收或资本开支导致现金流长期弱于净利润",
+    "市场定价转向资产底线或困境反转逻辑"
+  ],
+  "peer_set": [
+    "603296.SH 华勤技术",
+    "603341.SH 龙旗科技",
+    "601138.SH 工业富联",
+    "002475.SZ 立讯精密"
+  ],
+  "market_pricing_language": "2026年6月初A股对头部AI硬件链公司给予成长型盈利倍数；同业估值分散主要来自AI服务器/AI终端暴露度、客户质量、盈利率和现金流质量差异。",
+  "key_cycle_indicators": [
+    "AI手机、AI PC出货与渗透率",
+    "服务器及数据中心相关业务收入占比",
+    "核心客户新品导入节奏",
+    "毛利率、净利率与费用率",
+    "存货周转、应收周转和经营现金流/净利润"
+  ],
+  "confidence": "medium",
+  "sources": [
+    "Tencent quote snapshot on 2026-06-02 close for peer multiples",
+    "Company annual and quarterly disclosures through 2026Q1",
+    "Public industry pricing language from A-share comparable companies"
+  ],
+  "analyst_notes": "本锚由本次报告创建。由于华勤技术上市时间较短，历史分位数据不足，当前锚更多依赖可比公司横截面与公司盈利可见度，应在2026年三季报后复核。"
+}

@@ -1,0 +1,106 @@
+{
+  "anchor_id": "ai_server_infrastructure",
+  "display_name": "AI服务器/算力基础设施硬件",
+  "sector": "科技硬件",
+  "sub_industry": "AI服务器、通用服务器、智算中心基础设施与算力解决方案",
+  "aliases": [
+    "AI服务器",
+    "服务器",
+    "算力基础设施",
+    "智算服务器",
+    "加速服务器"
+  ],
+  "last_updated": "2026-06-01",
+  "next_review_due": "2026-09-09",
+  "refresh_interval_days": 100,
+  "current_cycle_state": "AI算力资本开支仍处高景气阶段，国内智能算力规模快速增长，服务器收入扩张强于利润率扩张；GPU/加速卡供给、客户集中采购节奏和液冷/高密度交付能力是主要变量。",
+  "primary_anchor": {
+    "method": "PS / EV-Sales with normalized margin bridge",
+    "weight": "high",
+    "reason": "AI服务器企业收入和订单对当前周期最敏感，利润率受GPU采购、客户结构、存货、汇率和供应链影响较大。用PS或EV/Sales观察市场为收入规模和AI敞口支付的价格，再桥接到中期净利率/经营利润率，比单一TTM PE更稳健。"
+  },
+  "secondary_anchors": [
+    {
+      "method": "normalized PE / forward PE",
+      "weight": "medium",
+      "reason": "当利润保持正值且可估计中期净利率时，正常化PE可检验PS隐含的盈利能力是否过高。"
+    },
+    {
+      "method": "peer PS/PE/PB comparison",
+      "weight": "medium",
+      "reason": "浪潮信息、紫光股份、中科曙光、神州数码等可反映A股对AI服务器、ICT设备和算力基础设施的相对定价。"
+    },
+    {
+      "method": "scenario DCF",
+      "weight": "low-to-medium",
+      "reason": "只有在能明确中期收入增速、毛利率、存货/应收周转和资本开支时才适合做交叉验证；否则DCF对假设过度敏感。"
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "balance-sheet and downside check",
+      "reason": "服务器硬件账面资产能反映部分营运资本压力，但客户认证、供应链交付、液冷能力和AI生态合作不完全体现在净资产中。"
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single-period trailing PE only",
+      "reason": "单一TTM PE容易把GPU供给、客户集中采购、汇率、低毛利大单和存货周期误读为长期盈利能力。"
+    },
+    {
+      "method": "mechanical profit CAGR only",
+      "reason": "利润CAGR仍需计算，但服务器硬件利润率低且波动，不能单独决定成长股估值。"
+    }
+  ],
+  "anchor_switch_rationale": "若AI服务器收入占比、订单能见度和液冷/高密度交付能力继续提升，市场主要使用PS/EV-Sales加正常化利润率桥接；若需求放缓或利润率显著稳定，则forward PE权重上升。",
+  "valid_when": [
+    "AI算力资本开支仍保持增长，服务器收入增速显著高于传统ICT硬件",
+    "目标公司保持正利润且资产负债表未出现严重存货或应收风险",
+    "同行估值语言仍围绕收入规模、AI敞口和正常化利润率展开"
+  ],
+  "invalid_when": [
+    "AI服务器需求明显转弱或云厂商/政企客户资本开支下修",
+    "GPU、HBM或关键零部件供应受限导致交付能力下降",
+    "低毛利大单占比过高，收入增长无法转化为可持续利润",
+    "存货跌价、应收回款或汇率损失成为主要利润变量"
+  ],
+  "peer_set": [
+    "000977.SZ 浪潮信息",
+    "000938.SZ 紫光股份",
+    "603019.SH 中科曙光",
+    "000034.SZ 神州数码"
+  ],
+  "market_pricing_language": "当前A股对AI服务器链条倾向同时看PS、市盈率预期和AI敞口；收入高增长但毛利率较低的公司，PS需要用可实现的正常化净利率进行约束。",
+  "key_cycle_indicators": [
+    "中国/全球AI服务器和加速服务器销售额增速",
+    "智能算力规模和智算中心建设节奏",
+    "头部云厂商、互联网厂商及政企客户资本开支",
+    "GPU/加速卡供应、液冷渗透率和高密度机柜交付能力",
+    "毛利率、存货周转、经营现金流和应收账款质量"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "浪潮信息2025年年度报告摘要",
+      "url": "https://notice.10jqka.com.cn/api/pdf/e8b83e4414a8b2cb.pdf",
+      "note": "2025年收入、净利润、扣非净利润和现金流基线。"
+    },
+    {
+      "name": "浪潮信息2026年第一季度报告",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257759.PDF",
+      "note": "2026Q1最新财务和短期经营变化。"
+    },
+    {
+      "name": "中商产业研究院/新浪财经转载：2026年中国AI服务器行业市场前景预测研究报告",
+      "url": "https://finance.sina.com.cn/stock/relnews/cn/2026-03-11/doc-inhqqixu5721606.shtml",
+      "note": "中国AI服务器市场规模和2025上半年主要厂商格局。"
+    },
+    {
+      "name": "Gartner服务器市场追踪报告报道",
+      "url": "https://tech.gmw.cn/2025-02/14/content_37850863.htm",
+      "note": "全球服务器市场增长、AI服务器占比提升和浪潮市场地位。"
+    }
+  ],
+  "analyst_notes": "该锚适用于盈利为正但利润率受供应链和客户结构扰动的AI服务器硬件企业。估值时避免用利润CAGR单点外推，应以收入规模、正常化净利率、同行PS/PE和现金流质量共同约束。"
+}

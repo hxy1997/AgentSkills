@@ -9,9 +9,6 @@ import math
 import statistics
 from typing import Dict, Iterable, List, Sequence
 
-from scipy.optimize import linprog
-
-
 DEFAULT_WMA_WEIGHTS = [0.1, 0.15, 0.2, 0.25, 0.3]
 
 
@@ -19,27 +16,49 @@ def parse_number_list(raw: str) -> List[float]:
     return [float(item.strip()) for item in raw.split(",") if item.strip()]
 
 
-def compute_yoy_rates(profits: Sequence[float]) -> List[float]:
+def normalize_years(profits: Sequence[float], years: Sequence[int] | None = None) -> List[float]:
+    if years is None:
+        return [float(index) for index in range(len(profits))]
+    if len(years) != len(profits):
+        raise ValueError("years and profits must have the same length")
+    normalized = [float(value) for value in years]
+    if any(current <= previous for previous, current in zip(normalized, normalized[1:])):
+        raise ValueError("years must be strictly increasing")
+    return normalized
+
+
+def compute_yoy_rates(profits: Sequence[float], years: Sequence[float] | None = None) -> List[float]:
     if len(profits) < 2:
         raise ValueError("Need at least two profit observations")
+    time_points = normalize_years(profits, years)
     yoy = []
-    for previous, current in zip(profits[:-1], profits[1:]):
+    for previous, current, year_before, year_after in zip(
+        profits[:-1], profits[1:], time_points[:-1], time_points[1:]
+    ):
         if previous == 0:
             raise ValueError("Profit series contains zero, cannot compute yoy growth")
-        yoy.append(current / previous - 1.0)
+        interval = year_after - year_before
+        if previous > 0 and current > 0:
+            yoy.append((current / previous) ** (1.0 / interval) - 1.0)
+        else:
+            yoy.append((current - previous) / abs(previous) / interval)
     return yoy
 
 
-def compute_profit_cagr(profits: Sequence[float]) -> float:
+def compute_profit_cagr(profits: Sequence[float], years: Sequence[float] | None = None) -> float:
     if len(profits) < 2:
         raise ValueError("Need at least two profit observations")
     if profits[0] <= 0 or profits[-1] <= 0:
         raise ValueError("CAGR requires positive first and last profit values")
-    return (profits[-1] / profits[0]) ** (1.0 / (len(profits) - 1)) - 1.0
+    time_points = normalize_years(profits, years)
+    span = time_points[-1] - time_points[0]
+    return (profits[-1] / profits[0]) ** (1.0 / span) - 1.0
 
 
-def linear_regression_growth_rate(profits: Sequence[float]) -> float:
-    x = list(range(len(profits)))
+def linear_regression_growth_rate(
+    profits: Sequence[float], years: Sequence[float] | None = None
+) -> float:
+    x = normalize_years(profits, years)
     mean_x = statistics.mean(x)
     mean_y = statistics.mean(profits)
     numerator = sum((xi - mean_x) * (yi - mean_y) for xi, yi in zip(x, profits))
@@ -52,13 +71,16 @@ def median_growth_rate(yoy_rates: Sequence[float]) -> float:
     return statistics.median(yoy_rates)
 
 
-def exp_smoothing_growth_rate(profits: Sequence[float], alpha: float = 0.5) -> float:
+def exp_smoothing_growth_rate(
+    profits: Sequence[float], alpha: float = 0.5, years: Sequence[float] | None = None
+) -> float:
     smoothed = profits[0]
     for value in profits[1:]:
         smoothed = alpha * value + (1.0 - alpha) * smoothed
     if smoothed <= 0 or profits[0] <= 0:
         raise ValueError("Exponential smoothing growth requires positive profits")
-    return (smoothed / profits[0]) ** (1.0 / (len(profits) - 1)) - 1.0
+    time_points = normalize_years(profits, years)
+    return (smoothed / profits[0]) ** (1.0 / (time_points[-1] - time_points[0])) - 1.0
 
 
 def weighted_moving_average_growth_rate(
@@ -74,11 +96,14 @@ def weighted_moving_average_growth_rate(
     return sum(rate * weight for rate, weight in zip(sliced_rates, normalized_weights))
 
 
-def theil_sen_growth_rate(profits: Sequence[float]) -> float:
+def theil_sen_growth_rate(
+    profits: Sequence[float], years: Sequence[float] | None = None
+) -> float:
+    time_points = normalize_years(profits, years)
     slopes = []
     for i in range(len(profits)):
         for j in range(i + 1, len(profits)):
-            slopes.append((profits[j] - profits[i]) / (j - i))
+            slopes.append((profits[j] - profits[i]) / (time_points[j] - time_points[i]))
     if not slopes:
         raise ValueError("Need at least two profits for Theil-Sen")
     return statistics.median(slopes) / statistics.mean(profits)
@@ -87,28 +112,16 @@ def theil_sen_growth_rate(profits: Sequence[float]) -> float:
 def quantile_regression_growth_rate(yoy_rates: Sequence[float], q: float = 0.4) -> float:
     if not 0 < q < 1:
         raise ValueError("Quantile must be between 0 and 1")
-    if len(yoy_rates) < 2:
-        raise ValueError("Need at least two yoy rates for quantile regression")
-
-    x = list(range(len(yoy_rates)))
-    n = len(yoy_rates)
-
-    c = [0.0, 0.0] + [q] * n + [(1.0 - q)] * n
-    a_eq = []
-    b_eq = []
-    for idx, (xi, yi) in enumerate(zip(x, yoy_rates)):
-        row = [-1.0, -float(xi)] + [0.0] * n + [0.0] * n
-        row[2 + idx] = 1.0
-        row[2 + n + idx] = -1.0
-        a_eq.append(row)
-        b_eq.append(-float(yi))
-
-    bounds = [(None, None), (None, None)] + [(0.0, None)] * (2 * n)
-    result = linprog(c, A_eq=a_eq, b_eq=b_eq, bounds=bounds, method="highs")
-    if not result.success:
-        raise RuntimeError(f"Quantile regression failed: {result.message}")
-    slope = float(result.x[1])
-    return slope
+    if not yoy_rates:
+        raise ValueError("Need at least one growth rate for quantile regression")
+    ordered = sorted(float(value) for value in yoy_rates)
+    position = (len(ordered) - 1) * q
+    lower = math.floor(position)
+    upper = math.ceil(position)
+    if lower == upper:
+        return ordered[lower]
+    fraction = position - lower
+    return ordered[lower] * (1.0 - fraction) + ordered[upper] * fraction
 
 
 def filter_method_results(method_results: Dict[str, float], max_abs_value: float = 0.5) -> Dict[str, float]:
@@ -145,23 +158,24 @@ def calculate_profit_growth_metrics(
     profits = [float(value) for value in profits]
     if len(profits) < 3:
         raise ValueError("Need at least three profit observations")
-    if years is not None and len(years) != len(profits):
-        raise ValueError("years and profits must have the same length")
+    time_points = normalize_years(profits, years)
 
-    yoy_rates = compute_yoy_rates(profits)
+    yoy_rates = compute_yoy_rates(profits, time_points)
     method_results = {
-        "linear_regression": linear_regression_growth_rate(profits),
+        "linear_regression": linear_regression_growth_rate(profits, time_points),
         "median_growth": median_growth_rate(yoy_rates),
-        "exp_smoothing_alpha_0_5": exp_smoothing_growth_rate(profits, alpha=alpha),
+        "exp_smoothing_alpha_0_5": exp_smoothing_growth_rate(
+            profits, alpha=alpha, years=time_points
+        ),
         "weighted_moving_average": weighted_moving_average_growth_rate(yoy_rates),
-        "theil_sen": theil_sen_growth_rate(profits),
+        "theil_sen": theil_sen_growth_rate(profits, time_points),
         "quantile_regression_q0_4": quantile_regression_growth_rate(yoy_rates, q=q),
     }
 
     valid_results = filter_method_results(method_results, max_abs_value=max_abs_value)
     trimmed_results = trim_extremes(valid_results)
     estimated_avg_profit_growth = average_values(trimmed_results.values())
-    profit_cagr = compute_profit_cagr(profits)
+    profit_cagr = compute_profit_cagr(profits, time_points)
     weighted_compound_growth = (profit_cagr + estimated_avg_profit_growth) / 2.0
 
     return {

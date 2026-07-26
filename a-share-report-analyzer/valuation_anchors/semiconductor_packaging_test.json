@@ -1,0 +1,114 @@
+{
+  "anchor_id": "semiconductor_packaging_test",
+  "display_name": "半导体封装测试",
+  "sector": "电子/半导体",
+  "sub_industry": "集成电路封装测试/OSAT/先进封装",
+  "aliases": [
+    "半导体封装测试",
+    "封装测试",
+    "封测",
+    "OSAT",
+    "先进封装",
+    "集成电路封测",
+    "semiconductor packaging test",
+    "semiconductor_packaging_test"
+  ],
+  "last_updated": "2026-06-01",
+  "next_review_due": "2026-08-30",
+  "refresh_interval_days": 90,
+  "current_cycle_state": "AI/HPC demand and国产算力链带动先进封装叙事升温，但传统消费电子与成熟封测仍有周期波动；头部公司估值已从单纯低 PB/低 PE 转向先进封装能力、客户结构、产能利用率和正常化盈利。",
+  "primary_anchor": {
+    "method": "normalized PE / PEG adjusted by advanced-packaging revenue mix",
+    "weight": "high",
+    "reason": "OSAT 是重资产制造业，单年利润受稼动率、折旧、并购摊销和周期影响较大；但龙头公司的长期价值仍由正常化净利润、先进封装占比、客户认证和经营杠杆决定。"
+  },
+  "secondary_anchors": [
+    {
+      "method": "peer PE/PB/PS multiple comparison",
+      "weight": "medium",
+      "reason": "长电科技、通富微电、华天科技和日月光等公司处于相同 OSAT 产业链，同行倍数能检验市场是否已经计入先进封装溢价。"
+    },
+    {
+      "method": "PS / EV-Sales",
+      "weight": "medium",
+      "reason": "当利润率处于恢复或投入期，收入规模、先进封装收入质量和毛利率恢复比短期 PE 更稳定。"
+    },
+    {
+      "method": "cycle-normalized DCF",
+      "weight": "low-to-medium",
+      "reason": "在能合理估计中周期资本开支、折旧和自由现金流时可作交叉验证，但短期 capex 高峰会压低 FCF。"
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "asset floor and downside check",
+      "reason": "封测资产重、设备和厂房投入大，PB 可观察资产底线；但客户认证、工艺平台和先进封装 know-how 不完全体现在账面价值中。"
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "static trailing PE only",
+      "reason": "单独使用 TTM PE 会把周期低点/高点、并购费用、折旧和新产能爬坡误判为长期盈利水平。"
+    },
+    {
+      "method": "mechanical profit CAGR only",
+      "reason": "2020-2025 年利润包含上行周期、下行周期与先进封装投入期，机械 CAGR 不足以代表下一阶段盈利中枢。"
+    }
+  ],
+  "anchor_switch_rationale": "若 AI/HPC 和高端先进封装收入占比继续提升且毛利率稳定改善，市场会更偏向 normalized PE/PEG；若利润率被 capex、折旧和稼动率拖累，PS/EV-Sales 与同行倍数应提高权重；若行业下行导致订单/稼动率显著走弱，PB 与周期底部估值的权重上升。",
+  "valid_when": [
+    "公司仍以 OSAT/封装测试为主营",
+    "先进封装、HPC/AI、汽车电子或高可靠封装仍是主要增量叙事",
+    "可取得最新股价、市值、PE/PB/PS 和至少 2 个同行可比数据",
+    "没有发生重大会计重述或主营资产剥离"
+  ],
+  "invalid_when": [
+    "先进封装需求或国产算力链预期明显反转",
+    "主要客户订单大幅流失或产能利用率连续下滑",
+    "大规模并购导致报表口径与历史完全不可比",
+    "行业估值语言从盈利正常化转向资产清算或亏损修复"
+  ],
+  "peer_set": [
+    "ASE Technology Holding（日月光投控）",
+    "Amkor Technology（安靠）",
+    "Tongfu Microelectronics（通富微电）",
+    "Tianshui Huatian Technology（华天科技）"
+  ],
+  "market_pricing_language": [
+    "先进封装收入占比",
+    "AI/HPC 客户验证与订单能见度",
+    "产能利用率和折旧压力",
+    "正常化净利率与 ROE",
+    "同行 PE/PB/PS 溢价或折价",
+    "国产算力链安全边际"
+  ],
+  "key_cycle_indicators": [
+    "全球半导体销售与封测稼动率",
+    "AI/HPC 与高端算力封装订单",
+    "消费电子和存储周期",
+    "资本开支与折旧摊销增速",
+    "应收账款和存货周转",
+    "毛利率和净利率恢复斜率"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "长电科技 2025 年年度报告与 2026 年第一季度报告",
+      "url": "official disclosure / exchange filing"
+    },
+    {
+      "name": "东方财富行情与估值接口 2026-06-01",
+      "url": "https://push2.eastmoney.com/"
+    },
+    {
+      "name": "百度股市通估值历史接口 2026-05-31",
+      "url": "https://gushitong.baidu.com/"
+    },
+    {
+      "name": "OSAT peer public disclosures and industry ranking materials",
+      "url": "current web research"
+    }
+  ],
+  "analyst_notes": "封测行业估值必须同时看周期、先进封装结构和资本开支。对长电科技这类龙头，当前估值高低的核心不是账面 PB，而是市场给 AI/HPC 先进封装平台多少正常化利润溢价。"
+}

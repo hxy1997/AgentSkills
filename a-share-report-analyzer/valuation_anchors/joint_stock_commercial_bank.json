@@ -1,0 +1,107 @@
+{
+  "anchor_id": "joint_stock_commercial_bank",
+  "display_name": "股份制商业银行",
+  "sector": "银行",
+  "sub_industry": "全国性股份制商业银行",
+  "aliases": [
+    "股份制商业银行",
+    "股份制银行",
+    "全国性商业银行",
+    "全国性股份制银行",
+    "joint_stock_commercial_bank",
+    "commercial_bank"
+  ],
+  "last_updated": "2026-05-26",
+  "next_review_due": "2026-12-02",
+  "refresh_interval_days": 190,
+  "current_cycle_state": "Low-rate, low-NIM cycle. Sector valuation is mainly asset-quality and capital-return driven; PB remains the dominant anchor, with sustainable ROE and dividend yield explaining dispersion.",
+  "primary_anchor": {
+    "method": "PB adjusted by sustainable ROE and asset quality",
+    "weight": "high",
+    "reason": "Commercial banks are balance-sheet businesses. Book equity, asset quality, capital adequacy, and sustainable ROE are more stable valuation drivers than single-period earnings growth."
+  },
+  "secondary_anchors": [
+    {
+      "method": "dividend yield",
+      "weight": "medium",
+      "reason": "In a low-rate environment, mature banks are also priced as cash-return assets; dividend yield is useful when payout is sustainable and capital ratios remain adequate."
+    },
+    {
+      "method": "normalized PE",
+      "weight": "medium",
+      "reason": "Useful as a cross-check when earnings are stable, but should be normalized for credit cost, NIM pressure, and investment gains."
+    },
+    {
+      "method": "peer PB/ROE comparison",
+      "weight": "medium",
+      "reason": "Useful for checking whether a premium to other joint-stock banks is supported by ROE, deposit franchise, and asset quality."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "absolute PB floor",
+      "role": "downside support",
+      "reason": "A very low PB may reflect asset-quality concern rather than cheapness; use only after checking NPL migration, provision coverage, and capital adequacy."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "industrial-company DCF/FCF",
+      "reason": "Bank cash flows are dominated by deposit, loan, and interbank balance-sheet movements and are not comparable to industrial free cash flow."
+    },
+    {
+      "method": "mechanical high-growth PE/PEG",
+      "reason": "Bank growth is constrained by capital, risk appetite, NIM, and credit cost. High historical profit CAGR should not mechanically imply a growth-stock multiple."
+    }
+  ],
+  "anchor_switch_rationale": "Use PB/ROE as the main anchor while NIM pressure, credit migration, and capital regulation dominate the sector. Increase dividend-yield weight when payout and capital adequacy are stable. Increase normalized PE only when credit cost and NIM are clearly normalized.",
+  "valid_when": [
+    "the bank has positive book equity and normal regulatory-capital reporting",
+    "asset-quality metrics are available, including NPL ratio, provision coverage, and credit cost",
+    "sustainable ROE and capital adequacy can be estimated"
+  ],
+  "invalid_when": [
+    "asset quality is opaque or NPL recognition is suspected to lag",
+    "capital adequacy is near regulatory constraints or payout policy is unstable",
+    "major regulatory changes alter risk weights, capital rules, or deposit pricing before the next review"
+  ],
+  "peer_set": [
+    "600036.SH",
+    "601166.SH",
+    "000001.SZ",
+    "600000.SH",
+    "601998.SH",
+    "600016.SH"
+  ],
+  "market_pricing_language": [
+    "PB discount or premium versus sustainable ROE",
+    "asset-quality gap versus peers",
+    "deposit-cost and NIM resilience",
+    "dividend yield and payout sustainability",
+    "capital adequacy and RWA consumption"
+  ],
+  "key_cycle_indicators": [
+    "commercial-bank NIM",
+    "NPL ratio and special-mention loan ratio",
+    "provision coverage and loan-loss reserve ratio",
+    "CET1 ratio and total capital adequacy ratio",
+    "LPR and deposit-rate changes",
+    "real-estate and local-government-debt risk migration"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "国家金融监督管理总局 2026Q1 商业银行主要监管指标",
+      "url": "https://www.nfra.gov.cn/cn/view/pages/ItemDetail.html?docId=1258013&generaltype=0&itemId=915"
+    },
+    {
+      "name": "招商银行 2025 年度业绩摘要",
+      "url": "https://s3gw.cmbimg.com/lb5001-cmbweb-prd-1255000097/cmbir/20260409/4e4e3c3e-c293-49bf-8cb6-f9db3813ef25.pdf"
+    },
+    {
+      "name": "理杏仁 招商银行估值页，最后更新 2026-05-25",
+      "url": "https://www.lixinger.com/equity/company/detail/sh/600036/600036/fundamental/valuation/pe-ttm"
+    }
+  ],
+  "analyst_notes": "For high-quality joint-stock banks such as CMB, a PB premium over peers is acceptable only when supported by durable ROE, strong low-cost deposits, high provision coverage, and adequate CET1. Recheck after quarterly regulatory data or any major LPR/deposit-rate regime change."
+}

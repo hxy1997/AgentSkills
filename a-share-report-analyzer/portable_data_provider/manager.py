@@ -30,6 +30,8 @@ def normalize_stock_code(stock_code: str) -> str:
             return base
         if suffix.upper() == "HK" and base.isdigit() and 1 <= len(base) <= 5:
             return f"HK{base.zfill(5)}"
+        if suffix.upper() == "US" and base and all(char.isalnum() or char in {".", "-"} for char in base):
+            return f"{base.upper()}.US"
     if upper.startswith("HK"):
         digits = upper[2:]
         if digits.isdigit() and 1 <= len(digits) <= 5:
@@ -39,7 +41,15 @@ def normalize_stock_code(stock_code: str) -> str:
 
 def _is_us_market(code: str) -> bool:
     text = (code or "").strip().upper()
-    return text.isalpha() and 1 <= len(text) <= 5
+    if text.endswith(".US"):
+        text = text[:-3]
+        return bool(text) and len(text) <= 10 and all(char.isalnum() or char in {".", "-"} for char in text)
+    return (
+        bool(text)
+        and len(text) <= 10
+        and any(char.isalpha() for char in text)
+        and all(char.isalnum() or char in {".", "-"} for char in text)
+    )
 
 
 def _is_hk_market(code: str) -> bool:
@@ -472,17 +482,31 @@ class DataFetcherManager:
         )
 
         capital_flow = self._fundamental_adapter.get_capital_flow(normalized)
+        capital_flow_data = {}
+        if isinstance(capital_flow, dict):
+            capital_flow_data = {
+                key: value
+                for key, value in capital_flow.items()
+                if key not in {"status", "source_chain", "errors"}
+            }
         context["capital_flow"] = self._build_block(
             str(capital_flow.get("status", "not_supported")),
-            capital_flow.get("data", {}) if isinstance(capital_flow, dict) else {},
+            capital_flow_data,
             list(capital_flow.get("source_chain", [])) if isinstance(capital_flow, dict) else [],
             list(capital_flow.get("errors", [])) if isinstance(capital_flow, dict) else [],
         )
 
         dragon_tiger = self._fundamental_adapter.get_dragon_tiger_flag(normalized)
+        dragon_tiger_data = {}
+        if isinstance(dragon_tiger, dict):
+            dragon_tiger_data = {
+                key: value
+                for key, value in dragon_tiger.items()
+                if key not in {"status", "source_chain", "errors"}
+            }
         context["dragon_tiger"] = self._build_block(
             str(dragon_tiger.get("status", "not_supported")),
-            dragon_tiger.get("data", {}) if isinstance(dragon_tiger, dict) else {},
+            dragon_tiger_data,
             list(dragon_tiger.get("source_chain", [])) if isinstance(dragon_tiger, dict) else [],
             list(dragon_tiger.get("errors", [])) if isinstance(dragon_tiger, dict) else [],
         )

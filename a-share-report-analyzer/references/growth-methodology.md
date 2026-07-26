@@ -17,13 +17,14 @@ Always calculate profit-growth estimates with these six methods:
 
 ### Profit CAGR
 
-Use:
+Use actual year intervals, not observation count:
 
-- `profit_cagr = (last_profit / first_profit)^(1/(n-1)) - 1`
+- `profit_cagr = (last_profit / first_profit)^(1/(last_year-first_year)) - 1`
+- Annualize each period growth by its actual year gap. Never treat a two-year interval as one year.
 
 ### Linear regression growth
 
-- Fit a least-squares line on the profit series.
+- Fit a least-squares line on actual year values.
 - Convert the slope into a growth rate by dividing it by average profit.
 
 ### Median growth
@@ -34,7 +35,7 @@ Use:
 ### Exponential smoothing
 
 - Use simple exponential smoothing with `alpha = 0.5`.
-- Convert the final smoothed profit level into an average growth rate by comparing it with the first-period profit across the observed intervals.
+- Convert the final smoothed profit level into an average growth rate across the actual year span.
 
 ### Weighted moving average
 
@@ -44,15 +45,14 @@ Use:
 
 ### Theil-Sen
 
-- Compute all pairwise slopes on the profit series.
+- Compute all pairwise slopes using actual year differences.
 - Use the median slope.
 - Convert slope into a growth rate by dividing it by average profit.
 
 ### Quantile regression
 
-- Fit a quantile regression to the period-over-period profit growth rates.
-- Use `q = 0.4`.
-- Use the fitted slope as the method result.
+- Estimate the `q = 0.4` conditional level of the annualized period-over-period growth rates.
+- Use that robust growth-rate level as the method result; do not use a time slope of growth rates as if it were growth itself.
 
 ## Fixed filtering rule
 

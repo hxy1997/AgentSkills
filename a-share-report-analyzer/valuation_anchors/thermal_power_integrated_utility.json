@@ -1,0 +1,119 @@
+{
+  "anchor_id": "thermal_power_integrated_utility",
+  "display_name": "火电/综合电力运营商",
+  "sector": "公用事业",
+  "sub_industry": "火电、热电、气电、综合电力运营商",
+  "aliases": [
+    "火电",
+    "煤电",
+    "热电",
+    "气电",
+    "综合电力",
+    "电力运营商",
+    "区域综合能源平台",
+    "thermal_power",
+    "integrated_utility"
+  ],
+  "last_updated": "2026-06-07",
+  "next_review_due": "2026-12-14",
+  "refresh_interval_days": 190,
+  "current_cycle_state": "煤电盈利修复后进入中周期正常化阶段。市场定价同时看当期PE、PB/ROE、股息率和煤价/电价/容量电价带来的盈利稳定性；单年利润容易受煤价、利用小时、来水、新能源消纳和参股核电投资收益扰动。",
+  "primary_anchor": {
+    "method": "normalized PE with dividend-yield and fuel-price adjustment",
+    "weight": "high",
+    "reason": "成熟电力运营商利润为正且分红可观察，PE能表达正常化盈利能力；但火电利润受煤价和电价周期影响，应使用正常化净利润而非单年高点，并用股息率检验现金回报。"
+  },
+  "secondary_anchors": [
+    {
+      "method": "PB adjusted by sustainable ROE",
+      "weight": "medium",
+      "reason": "电力运营商资产重、折旧高、杠杆和资本开支约束强，PB/ROE能检验账面资产回报是否支撑估值。"
+    },
+    {
+      "method": "peer PE/PB/dividend-yield comparison",
+      "weight": "medium",
+      "reason": "华能国际、国电电力、上海电力等同业能反映A股对火电修复、区域电价、装机结构和股东回报的当前定价。"
+    },
+    {
+      "method": "DCF or dividend discount cross-check",
+      "weight": "low-to-medium",
+      "reason": "当电价机制、煤价中枢、容量电价、资本开支和分红率可被估计时适合作为交叉验证；长期单点DCF对燃料和利用小时假设较敏感。"
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "absolute PB floor",
+      "role": "asset floor and downside check",
+      "reason": "账面净资产可提供下行参照，但存量煤电资产价值取决于利用小时、环保/灵活性改造、容量补偿和电价机制，不能只看PB低高。"
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single-year trailing PE only",
+      "reason": "煤价、减值、来水、交易电价和参股投资收益会显著扭曲单年利润。"
+    },
+    {
+      "method": "mechanical profit CAGR only",
+      "reason": "2021-2022煤价冲击造成亏损，机械利润CAGR会把周期低点和修复期混在一起，不能单独决定估值。"
+    },
+    {
+      "method": "pure PS",
+      "reason": "收入受燃料成本和电价传导影响，不能代表真实盈利能力。"
+    }
+  ],
+  "anchor_switch_rationale": "以正常化PE为主锚；当煤价和电价进入稳定区间、分红政策明确时提高股息率权重；当利润跨周期波动过大或有大额资产重估/减值时提高PB/ROE和同行比较权重。",
+  "valid_when": [
+    "公司归母净利润为正，且主要电力资产仍处于稳定运营期",
+    "煤价、电价、利用小时和容量电价机制没有发生重大突变",
+    "分红政策和资本开支需求可被合理估计",
+    "参股核电或新能源投资收益的贡献可被单独识别"
+  ],
+  "invalid_when": [
+    "电煤价格或长协机制发生重大变化",
+    "煤电容量电价、市场化电价、环保约束或电力现货规则发生重大调整",
+    "大规模新建、收购、资产减值或重组改变资产回报结构",
+    "区域用电需求、来水、新能源消纳或负荷曲线导致火电利用小时显著偏离常态"
+  ],
+  "peer_set": [
+    "600011.SH",
+    "600021.SH",
+    "600795.SH",
+    "600027.SH",
+    "600642.SH"
+  ],
+  "market_pricing_language": [
+    "正常化PE与煤价敏感性",
+    "PB/ROE匹配度",
+    "股息率和分红稳定性",
+    "区域用电需求、交易电价和容量电价",
+    "火电灵活性、新能源装机和参股核电投资收益"
+  ],
+  "key_cycle_indicators": [
+    "秦皇岛5500大卡动力煤价格和电煤长协履约",
+    "全国及浙江省全社会用电量增速",
+    "火电利用小时与电力供需紧平衡程度",
+    "市场化交易电价和容量电价政策",
+    "新能源装机增长、消纳与辅助服务收益",
+    "参股核电机组利用小时和投资收益"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "浙能电力2025年年度报告摘要",
+      "url": "https://epaper.stcn.com/att/202604/28/ZQ28B015-HF_eBook.pdf"
+    },
+    {
+      "name": "中国电力企业联合会2025-2026年度全国电力供需形势分析预测报告",
+      "url": "https://www.cec.org.cn/detail/index.html?3-344034"
+    },
+    {
+      "name": "国家能源局2025年全国电力工业统计数据",
+      "url": "https://www.nea.gov.cn/2026-01/23/c_1310802622.htm"
+    },
+    {
+      "name": "煤电容量电价机制公开政策资料",
+      "url": "https://www.ndrc.gov.cn/"
+    }
+  ],
+  "analyst_notes": "浙能电力属于区域型综合电力运营商，估值应把火电盈利正常化、股息率、PB/ROE、参股核电投资收益和浙江负荷需求放在同一框架内。下一次复核重点为2026年中报、煤价中枢、浙江电力现货和容量电价执行情况。"
+}

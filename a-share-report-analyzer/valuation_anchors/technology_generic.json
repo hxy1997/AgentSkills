@@ -1,0 +1,89 @@
+{
+  "anchor_id": "technology_generic",
+  "display_name": "通用科技公司",
+  "sector": "科技",
+  "sub_industry": "通用科技/硬科技/软件平台",
+  "aliases": [
+    "科技",
+    "技术公司",
+    "硬科技",
+    "软件",
+    "平台型科技",
+    "technology",
+    "technology_generic"
+  ],
+  "last_updated": "2026-05-25",
+  "next_review_due": "2026-08-23",
+  "refresh_interval_days": 100,
+  "current_cycle_state": "Generic fallback only. Use when no more precise sub-industry anchor exists, and create a dedicated anchor if valuation sensitivity is high.",
+  "primary_anchor": {
+    "method": "classification-dependent mixed valuation",
+    "weight": "temporary",
+    "reason": "Technology companies differ too much for a single anchor; classify into cyclical technology, hard-tech equipment, platform R&D, SaaS/software, biotech, or mature technology leader."
+  },
+  "secondary_anchors": [
+    {
+      "method": "PS / EV-Sales",
+      "weight": "conditional",
+      "reason": "Useful for loss-making or margin-transition companies when revenue quality and gross margin path are credible."
+    },
+    {
+      "method": "normalized PE",
+      "weight": "conditional",
+      "reason": "Useful when current profits are distorted but normalized margin can be defended."
+    },
+    {
+      "method": "SOTP",
+      "weight": "conditional",
+      "reason": "Useful when mature business, early-stage options, investments, and net cash need separate treatment."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "floor check",
+      "reason": "Book value rarely captures IP, customer validation, and software-like economics, but can reveal downside asset support."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single fixed PE",
+      "reason": "Not robust across technology companies with different maturity, margin, and R&D profiles."
+    }
+  ],
+  "anchor_switch_rationale": "Use this only as a bridge to a more precise sub-industry anchor. The first valuation step must classify the technology business model.",
+  "valid_when": [
+    "no specific anchor table exists",
+    "the report explicitly creates a valuation-method bridge and marks lower confidence",
+    "peer comparison supports the chosen temporary anchor"
+  ],
+  "invalid_when": [
+    "a dedicated sub-industry anchor exists",
+    "valuation depends heavily on a specific cycle, policy, pipeline, or platform metric",
+    "the report can access current sub-industry evidence but does not update the anchor"
+  ],
+  "peer_set": [],
+  "market_pricing_language": [
+    "classification first",
+    "revenue quality",
+    "gross-margin path",
+    "R&D conversion",
+    "cash runway",
+    "normalized profitability"
+  ],
+  "key_cycle_indicators": [
+    "revenue growth quality",
+    "gross margin trend",
+    "R&D intensity and conversion",
+    "cash burn",
+    "peer multiple dispersion"
+  ],
+  "confidence": "low",
+  "sources": [
+    {
+      "name": "Current peer multiples and company disclosures are required before use",
+      "url": "current research required"
+    }
+  ],
+  "analyst_notes": "Do not rely on this fallback for final high-conviction valuation. Create or update a dedicated anchor whenever possible."
+}

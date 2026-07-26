@@ -26,10 +26,21 @@ class TestCalcProfitGrowth(unittest.TestCase):
         self.assertAlmostEqual(result["methods"]["exp_smoothing_alpha_0_5"], -0.0224, places=3)
         self.assertAlmostEqual(result["methods"]["weighted_moving_average"], 0.0538, places=3)
         self.assertAlmostEqual(result["methods"]["theil_sen"], -0.0235, places=3)
-        self.assertAlmostEqual(result["methods"]["quantile_regression_q0_4"], 0.1849, places=3)
-        self.assertAlmostEqual(result["estimated_avg_profit_growth"], 0.0086, places=3)
+        self.assertAlmostEqual(result["methods"]["quantile_regression_q0_4"], -0.0091, places=3)
+        self.assertAlmostEqual(result["estimated_avg_profit_growth"], -0.0070, places=3)
         self.assertAlmostEqual(result["profit_cagr"], -0.0015, places=3)
-        self.assertAlmostEqual(result["weighted_compound_growth"], 0.0036, places=3)
+        self.assertAlmostEqual(result["weighted_compound_growth"], -0.0043, places=3)
+
+    def test_irregular_year_intervals_are_annualized(self):
+        module = _load_module()
+
+        result = module.calculate_profit_growth_metrics(
+            [100.0, 121.0, 146.41],
+            [2020, 2022, 2024],
+        )
+
+        self.assertAlmostEqual(result["profit_cagr"], 0.10, places=6)
+        self.assertTrue(all(abs(value - 0.10) < 1e-6 for value in result["yoy_rates"]))
 
     def test_filtering_and_trimming_drop_extremes(self):
         module = _load_module()

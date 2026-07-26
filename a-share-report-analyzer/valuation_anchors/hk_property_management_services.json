@@ -1,0 +1,113 @@
+{
+  "anchor_id": "hk_property_management_services",
+  "display_name": "港股物业管理服务",
+  "sector": "房地产服务",
+  "sub_industry": "住宅及非住宅物业管理、城市空间服务、社区及非业主增值服务",
+  "aliases": [
+    "物业管理服务",
+    "物业服务",
+    "物管",
+    "港股物管",
+    "房地产服务-物业管理"
+  ],
+  "last_updated": "2026-06-07",
+  "next_review_due": "2026-12-04",
+  "refresh_interval_days": 190,
+  "current_cycle_state": "房地产开发链条仍处调整期，物管企业从规模扩张转向理性经营、高分红和现金流质量；住宅基础物管受收缴率、续约降价和项目退出压力影响，央国企及高质量非住宅/商业运营公司享受估值溢价。",
+  "primary_anchor": {
+    "method": "quality-adjusted PE / forward PE",
+    "weight": "high",
+    "reason": "成熟物业管理公司通常已稳定盈利，市场主要按可持续净利润、母公司/第三方项目质量、收缴率、应收风险、分红率和现金转换能力定价。房地产周期压力下，单纯规模增速不再是主锚。"
+  },
+  "secondary_anchors": [
+    {
+      "method": "dividend yield and payout sustainability",
+      "weight": "medium",
+      "reason": "港股物管在低利率与红利资产偏好下被部分资金按现金回报资产定价，但需检验净现金、经营现金流覆盖和应收账款质量。"
+    },
+    {
+      "method": "peer PE/PB/ROE comparison",
+      "weight": "medium",
+      "reason": "中海物业、保利物业、绿城服务、建发物业、华润万象生活等可形成同市场可比组；商业运营和消费属性更强的公司应给予不同倍数层级。"
+    },
+    {
+      "method": "operating cash flow to net profit conversion / FCF yield",
+      "weight": "medium",
+      "reason": "收缴率下行和应收账款增加会让利润与现金流背离，现金转换率能检验利润质量。"
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB",
+      "role": "balance-sheet floor and ROE consistency check",
+      "reason": "物业管理资产轻，账面净资产不能完整反映品牌、项目合同和服务能力；但净现金与高ROE能为PB提供底线校验。"
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single PS multiple",
+      "reason": "物业服务收入质量差异大，项目收缴率、毛利率、应收风险和增值服务结构会显著改变同等收入的价值。"
+    },
+    {
+      "method": "long-horizon DCF as sole anchor",
+      "reason": "续约价格、收缴率、地产链条修复节奏和城市服务项目盈利模型存在较高情景敏感性，单点DCF容易产生虚假精确。"
+    },
+    {
+      "method": "mechanical profit CAGR only",
+      "reason": "2021-2025利润序列包含扩张期与地产调整期，且2025年利润下滑；历史CAGR需要被现金流、应收和行业周期修正。"
+    }
+  ],
+  "anchor_switch_rationale": "若收缴率企稳、应收风险下降且第三方/非住宅业务维持较好利润率，可提高forward PE权重；若利润与现金流继续背离或项目续约降价加剧，应提高股息可持续性和现金流锚权重，降低成长倍数。",
+  "valid_when": [
+    "公司已持续盈利且净利润不是一次性项目驱动",
+    "经营现金流基本能覆盖净利润和分红",
+    "应收账款、合同资产和关联方款项风险可解释",
+    "项目来源、第三方拓展和续约质量可被披露验证"
+  ],
+  "invalid_when": [
+    "行业收缴率进一步快速下滑并导致大额减值",
+    "母公司或主要关联开发商信用风险传导至应收和项目获取",
+    "公司利润主要来自非经常性收益或一次性出售",
+    "政策或物业费定价机制发生重大变化"
+  ],
+  "peer_set": [
+    "02669.HK China Overseas Property",
+    "06049.HK Poly Property Services",
+    "02869.HK Greentown Service",
+    "02156.HK C&D Property",
+    "01209.HK China Resources Mixc Lifestyle"
+  ],
+  "market_pricing_language": "普通住宅/综合物管龙头多以约8-14倍PE和4%-7%股息率定价；商业运营、消费属性更强且增长更快的华润万象生活等可享受20倍以上PE。行业公开材料显示港股物管合理估值中枢约12-17倍，但个股需按现金流和收缴率折溢价。",
+  "key_cycle_indicators": [
+    "物业费收缴率和欠费趋势",
+    "在管面积与合约面积增长",
+    "第三方项目占比及新拓合同金额",
+    "住宅/非住宅/城市服务收入结构",
+    "毛利率、应收账款、合同资产和减值",
+    "经营现金流/净利润、分红率与净现金"
+  ],
+  "confidence": "medium",
+  "sources": [
+    {
+      "name": "中海物业2025年报",
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0429/2026042900389.pdf",
+      "used_for": "公司业务、财务、面积、现金流和风险披露"
+    },
+    {
+      "name": "AAStocks 02669实时报价",
+      "url": "https://www.aastocks.com/en/stocks/quote/quick-quote.aspx?symbol=02669",
+      "used_for": "当前市值、PE、股息率"
+    },
+    {
+      "name": "Reuters/Investing.com property service industry report",
+      "url": "https://m.investing.com/news/economy-news/analysischinas-real-estate-funk-drags-down-yet-another-sector-property-service-providers-4723152?ampMode=1",
+      "used_for": "收缴率下行和房地产周期压力"
+    },
+    {
+      "name": "中指研究院/智通财经上市物企估值观察",
+      "url": "https://cn.investing.com/news/stock-market-news/article-3361592",
+      "used_for": "港股物管估值中枢与红利资产定价语言"
+    }
+  ],
+  "analyst_notes": "本锚表为港股物业管理服务临时补充表，适用于成熟盈利物管公司；对商业运营占比显著高于住宅物业管理的公司，应单独调整倍数层级。"
+}

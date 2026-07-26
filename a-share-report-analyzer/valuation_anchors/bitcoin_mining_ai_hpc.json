@@ -1,0 +1,89 @@
+{
+  "anchor_id": "bitcoin_mining_ai_hpc",
+  "display_name": "比特币矿业/AI HPC 数据中心转型",
+  "sector": "Digital assets infrastructure / data centers",
+  "sub_industry": "Bitcoin mining, power-backed digital infrastructure, AI/HPC data center conversion",
+  "aliases": [
+    "bitcoin mining",
+    "crypto mining",
+    "digital asset mining",
+    "AI HPC mining conversion"
+  ],
+  "last_updated": "2026-06-01",
+  "next_review_due": "2026-08-30",
+  "refresh_interval_days": 90,
+  "current_cycle_state": "Post-halving mining economics remain highly sensitive to Bitcoin price, network difficulty, power cost and machine efficiency; equity-market pricing increasingly distinguishes pure mining capacity from credible contracted AI/HPC data-center conversion.",
+  "primary_anchor": {
+    "method": "EV/Sales or PS with normalized EBITDA bridge and BTC treasury adjustment",
+    "weight": "high",
+    "reason": "GAAP net income is frequently distorted by Bitcoin fair-value marks, impairment/revaluation, realized gains, depreciation and power-site expansion. Revenue and normalized EBITDA capacity are more informative, but must be adjusted for Bitcoin price, hashrate, power cost and fleet efficiency."
+  },
+  "secondary_anchors": [
+    {
+      "method": "EV/EH or market cap per energized EH/s",
+      "weight": "medium",
+      "reason": "Useful for pure miners because hashrate is the core production capacity, but it ignores power cost, uptime, fleet efficiency, curtailment revenue and balance-sheet differences."
+    },
+    {
+      "method": "AI/HPC contracted capacity SOTP",
+      "weight": "medium",
+      "reason": "When a miner has signed, financeable AI/HPC colocation or GPU-cloud contracts, the contracted MW/ARR/EBITDA stream should be valued separately from Bitcoin mining."
+    },
+    {
+      "method": "Peer PS, EV/Sales and EV/hashrate comparison",
+      "weight": "medium",
+      "reason": "MARA, Riot, CleanSpark, Cipher, IREN and other listed miners provide the current market language for power-backed infrastructure and mining capacity."
+    }
+  ],
+  "weak_or_floor_anchors": [
+    {
+      "method": "PB / tangible asset floor",
+      "role": "balance-sheet and downside stress check",
+      "reason": "Book value captures cash, Bitcoin holdings, sites and miners, but hardware depreciates quickly and power-interconnection optionality is not fully reflected."
+    }
+  ],
+  "disabled_anchors": [
+    {
+      "method": "single-period trailing PE",
+      "reason": "GAAP EPS can swing from losses to large profits from Bitcoin fair-value accounting and does not represent stable recurring earnings."
+    },
+    {
+      "method": "mechanical profit CAGR",
+      "reason": "Loss years, break-even crossings and fair-value accounting make profit CAGR unsuitable as a primary valuation input."
+    }
+  ],
+  "anchor_switch_rationale": "If AI/HPC capacity is contracted with credible counterparties and financing, SOTP and contracted ARR/EBITDA receive higher weight. If AI conversion remains uncontracted, the anchor reverts to mining EV/Sales, EV/EH and BTC-cycle stress valuation.",
+  "valid_when": [
+    "Bitcoin mining revenue remains the dominant disclosed revenue line",
+    "AI/HPC contracts are not yet large enough to dominate EBITDA",
+    "Current peer multiples can be observed from public listed miners"
+  ],
+  "invalid_when": [
+    "AI/HPC contracted revenue exceeds mining revenue or becomes the dominant EBITDA driver",
+    "Bitcoin price or network difficulty moves enough to reset mining margins",
+    "Major power-market, tax, or mining-regulation changes alter site economics"
+  ],
+  "peer_set": [
+    "CLSK",
+    "MARA",
+    "RIOT",
+    "CIFR",
+    "IREN"
+  ],
+  "market_pricing_language": "Pure miners are mainly priced on hashrate, BTC holdings, power cost and BTC beta. Miners with credible AI/HPC conversion receive a separate data-center optionality premium only when contracts, power availability and financing are visible.",
+  "key_cycle_indicators": [
+    "Bitcoin price",
+    "Network hashprice and difficulty",
+    "Energized hashrate and fleet efficiency",
+    "Power cost per kWh and curtailment economics",
+    "BTC treasury and leverage",
+    "Signed AI/HPC MW, ARR and EBITDA visibility"
+  ],
+  "confidence": "medium",
+  "sources": [
+    "Company SEC filings and investor relations releases",
+    "Public peer disclosures from listed Bitcoin miners",
+    "Market data services for current market cap and multiples"
+  ],
+  "analyst_notes": "For CleanSpark, explicitly run two cases: AI/HPC conversion succeeds versus remains mostly a pure Bitcoin miner."
+}
