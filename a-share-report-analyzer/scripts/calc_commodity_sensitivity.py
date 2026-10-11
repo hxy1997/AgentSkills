@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 
 
 def calculate_commodity_sensitivity(
@@ -18,6 +19,19 @@ def calculate_commodity_sensitivity(
     multiple_low: float | None = None,
     multiple_high: float | None = None,
 ) -> dict:
+    values = {
+        "attributable_production": attributable_production,
+        "price_change_usd": price_change_usd,
+        "fx_cny_per_usd": fx_cny_per_usd,
+        "pass_through_low": pass_through_low,
+        "pass_through_high": pass_through_high,
+        "shares_outstanding": shares_outstanding,
+        "multiple_low": multiple_low,
+        "multiple_high": multiple_high,
+    }
+    for name, value in values.items():
+        if value is not None and not math.isfinite(value):
+            raise ValueError(f"{name} must be finite")
     if attributable_production < 0:
         raise ValueError("attributable_production must be non-negative")
     if fx_cny_per_usd <= 0:
@@ -28,6 +42,8 @@ def calculate_commodity_sensitivity(
         raise ValueError("shares_outstanding must be positive")
     if (multiple_low is None) != (multiple_high is None):
         raise ValueError("provide both multiple_low and multiple_high, or neither")
+    if multiple_low is not None and shares_outstanding is None:
+        raise ValueError("shares_outstanding is required when providing multiples")
     if multiple_low is not None and not 0 <= multiple_low <= multiple_high:
         raise ValueError("multiples must satisfy 0 <= low <= high")
 

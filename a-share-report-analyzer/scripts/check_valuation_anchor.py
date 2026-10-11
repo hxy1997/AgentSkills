@@ -69,9 +69,15 @@ def check_anchor_freshness(anchor: Dict[str, Any], as_of: date) -> Dict[str, Any
     stale_by_age = age_days > refresh_days
     stale_by_due = as_of > next_review_due
     expired = stale_by_age or stale_by_due
+    status = "not_yet_available" if age_days < 0 else ("expired" if expired else "ok")
+    actions = {
+        "not_yet_available": "use_record_available_at_cutoff",
+        "expired": "refresh_evidence_before_valuation",
+        "ok": "verify_sources_and_applicability",
+    }
 
     return {
-        "status": "expired" if expired else "ok",
+        "status": status,
         "anchor_id": anchor.get("anchor_id"),
         "display_name": anchor.get("display_name"),
         "sub_industry": anchor.get("sub_industry"),
@@ -86,7 +92,7 @@ def check_anchor_freshness(anchor: Dict[str, Any], as_of: date) -> Dict[str, Any
         "disabled_anchors": anchor.get("disabled_anchors", []),
         "confidence": anchor.get("confidence"),
         "path": anchor.get("_path"),
-        "action_required": "update_anchor_before_valuation" if expired else "use_anchor",
+        "action_required": actions[status],
     }
 
 
@@ -96,7 +102,7 @@ def build_missing_payload(anchor_id: Optional[str], sub_industry: Optional[str],
         "anchor_id": anchor_id,
         "sub_industry": sub_industry,
         "as_of_date": as_of.isoformat(),
-        "action_required": "create_anchor_before_valuation",
+        "action_required": "establish_method_from_current_evidence",
     }
 
 
@@ -133,7 +139,7 @@ def main() -> int:
 
     payload = check_anchor_freshness(anchor, as_of)
     print(json.dumps(payload, ensure_ascii=False, indent=2))
-    return 1 if payload["status"] == "expired" else 0
+    return {"ok": 0, "expired": 1, "not_yet_available": 3}[payload["status"]]
 
 
 if __name__ == "__main__":

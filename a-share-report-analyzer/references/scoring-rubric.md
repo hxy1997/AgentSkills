@@ -1,36 +1,7 @@
-# Scoring Rubric
+# 评价规则
 
-Use a `10分制` for section scores unless the user requests a different system.
+默认用有证据的分项判断，不要求总分。用户需要数字时可用10分制，但将经营质量与证据置信度分列，缺资料写未知而非0分。每个分数说明依据，不以一位小数制造精确感。
 
-## Default scoring sections
+底线项目包括理解能力、财务可靠性、治理、财务生存和策略适用性，结果为通过/不通过/证据不足。严重且已证实的资金占用、重大虚假披露或无法承受的偿付缺口不能被均分抵消。
 
-- 业务及产品清晰度
-- 经营稳定性
-- 定价权
-- 成长性
-- 行业竞争度
-- 财务质量
-
-## Scoring method
-
-- `9-10`: strong evidence, low ambiguity, clear positive structure
-- `7-8`: generally good, but with meaningful caveats
-- `5-6`: mixed quality, important unresolved weaknesses
-- `3-4`: weak quality, fragile economics, or high uncertainty
-- `0-2`: severe problems or not enough basis for a positive judgment
-
-## Usage rules
-
-- Every score needs 1 to 3 sentences of justification.
-- If one industry-specific issue dominates the section, say so explicitly.
-- Do not hide major uncertainty behind a precise score. Mention the uncertainty.
-- If a section is structurally less applicable to the sector, adapt the explanation rather than forcing a fake precision.
-
-## Final score
-
-Use either:
-
-- simple average when no strong reason exists to weight sections differently
-- explicit weights when the industry overlay makes some sections more important
-
-If weights change, explain why.
+质量、价格与信心各自陈述。总分如展示仅为摘要，不转换成G、估值倍数、安全边际或交易动作。行业差异须写在分项解释中。

@@ -2,6 +2,8 @@
 
 Use these packages during phase 1 and integrate them into phase 2. They are evidence inputs, not standalone investment signals.
 
+Assess materiality for each package, then collect only decision-useful items. Official financials and material announcements are core evidence; chart indicators, minute-level flow and technical patterns are conditional extensions, not prerequisites for completing fundamental research. Use `market-liquidity-expectations.md` for monetary/flow/consensus definitions, cutoff dates and disclosure breaks. Use one shared macro-assumption ledger across references.
+
 ## Package checklist
 
 ### A. K-line and trading structure
@@ -17,7 +19,7 @@ Collect when available:
 
 Analysis rules:
 
-- Use K-line analysis to judge market pricing state, sentiment, liquidity, and risk timing.
+- Use K-line analysis to describe pricing state, volatility and trading liquidity; state the adjustment convention for returns and do not infer predictive timing ability from a pattern alone.
 - Do not use chart patterns as the primary fundamental conclusion.
 - Separate source-based trading facts from inferred technical interpretation.
 - If K-line data conflicts with fundamentals, state the conflict instead of forcing agreement.
@@ -68,9 +70,9 @@ Analysis rules:
 
 Collect when available:
 
-- intraday or minute-level fund flow: main-force, super-large, large, medium, and small order net inflow
-- 60 to 120 trading days of daily fund flow
-- northbound flow when applicable and source quality is acceptable
+- order-size flow estimates, only when their methodology and coverage help the question; label vendor-estimated "main-force" flow explicitly
+- comparable daily flow history when useful; no mandatory minute-level collection
+- Stock Connect fields actually disclosed under the rules at the research date; separate observed data from estimated northbound flow
 - margin financing and securities lending: balance, purchase, repayment, and trend
 - dragon-tiger list records, top buy/sell seats, institution seats, and reasons
 - block trades: date, price, volume, premium or discount, buyer and seller departments
@@ -82,6 +84,8 @@ Analysis rules:
 
 - Use capital-flow data to assess crowding, short-term pressure, liquidity, and chip concentration.
 - Do not equate short-term inflow with intrinsic value.
+- Trading turnover and vendor-classified net buying are not whole-market external cash inflows. ETF AUM changes include returns; fund units and net subscriptions need separate measurement. Apply the comparability rules in `market-liquidity-expectations.md`.
+- Shareholder counts and average holdings are lagged, affected by share changes and account structure; they do not directly identify beneficial owners or prove concentration of informed money.
 - For small caps, refinancing, lockup expiry, pledges, and block trades may materially change risk scoring.
 - If data comes from sources with known throttling or missing periods, say so.
 
@@ -99,7 +103,7 @@ Analysis rules:
 
 - Treat official announcements as primary-source facts.
 - Reconcile announcement claims with later execution data and financial statements.
-- Mark whether each announcement is already reflected in price, still pending, or failed to materialize.
+- Record whether announced actions are pending, executed, delayed or failed based on disclosures. Whether an event is already priced in is an analytical inference; give evidence and uncertainty, never label it an observed fact.
 - Put material unresolved announcements into key risks or catalysts.
 
 ## Source strategy inspired by `simonlin1212/a-stock-data`
@@ -131,4 +135,4 @@ For each package, report one of:
 - `missing`: unavailable; explain whether the report conclusion is still usable
 - `not decision-useful`: structurally irrelevant to the sector or current question
 
-When a package is `partial` or `missing`, explain impact on confidence, scoring, and valuation.
+When a package is `partial` or `missing`, explain impact on the particular conclusion it supports. Missing nonessential technical data does not invalidate an otherwise supported company analysis; do not use a package count as a valuation score.

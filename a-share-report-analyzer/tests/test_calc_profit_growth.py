@@ -1,64 +1,40 @@
 import importlib.util
-import unittest
 from pathlib import Path
+import unittest
+
+spec = importlib.util.spec_from_file_location('growth', Path(__file__).resolve().parents[1] / 'scripts/calc_profit_growth.py')
+growth = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(growth)
 
 
-SCRIPT_PATH = Path(__file__).resolve().parents[1] / "scripts" / "calc_profit_growth.py"
+class GrowthTests(unittest.TestCase):
+    def test_constant_growth_is_ten_percent_not_zero_slope(self):
+        result = growth.calculate_profit_growth_metrics([100, 110, 121], [2023, 2024, 2025])
+        self.assertAlmostEqual(result['profit']['cagr'], 0.1)
+        self.assertAlmostEqual(result['profit']['median_yoy'], 0.1)
+        self.assertNotIn('weighted_compound_growth', result)
+
+    def test_dilution_erases_total_profit_growth(self):
+        result = growth.calculate_profit_growth_metrics([100, 150], [2024, 2025], shares=[100, 150])
+        self.assertAlmostEqual(result['profit']['cagr'], 0.5)
+        self.assertAlmostEqual(result['per_share']['cagr'], 0)
+
+    def test_missing_year_not_mislabeled_yoy(self):
+        result = growth.calculate_profit_growth_metrics([100, 121], [2023, 2025])
+        self.assertAlmostEqual(result['profit']['cagr'], 0.1)
+        self.assertIsNone(result['profit']['intervals'][0]['yoy'])
+
+    def test_turnaround_and_zero_do_not_fake_compound_growth(self):
+        for values in ([100, -20, 121], [0, 10, 20], [-100, -50, 10]):
+            self.assertIsNone(growth.calculate_profit_growth_metrics(values)['profit']['cagr'])
+
+    def test_invalid_dates_shares_and_nonfinite_fail(self):
+        for kwargs in ({'years': [2024, 2024]}, {'shares': [100, 0]}, {'per_share': [1]}, {'shares': [1, 1], 'per_share': [1, 1]}):
+            with self.assertRaises(ValueError):
+                growth.calculate_profit_growth_metrics([100, 110], **kwargs)
+        with self.assertRaises(ValueError):
+            growth.calculate_profit_growth_metrics([100, float('nan')])
 
 
-def _load_module():
-    spec = importlib.util.spec_from_file_location("calc_profit_growth", SCRIPT_PATH)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-class TestCalcProfitGrowth(unittest.TestCase):
-    def test_screenshot_example_matches_expected_outputs(self):
-        module = _load_module()
-        profits = [95.09, 102.38, 75.07, 70.34, 72.23, 94.39]
-        years = [2020, 2021, 2022, 2023, 2024, 2025]
-
-        result = module.calculate_profit_growth_metrics(profits, years)
-
-        self.assertAlmostEqual(result["methods"]["linear_regression"], -0.0332, places=3)
-        self.assertAlmostEqual(result["methods"]["median_growth"], 0.0269, places=3)
-        self.assertAlmostEqual(result["methods"]["exp_smoothing_alpha_0_5"], -0.0224, places=3)
-        self.assertAlmostEqual(result["methods"]["weighted_moving_average"], 0.0538, places=3)
-        self.assertAlmostEqual(result["methods"]["theil_sen"], -0.0235, places=3)
-        self.assertAlmostEqual(result["methods"]["quantile_regression_q0_4"], -0.0091, places=3)
-        self.assertAlmostEqual(result["estimated_avg_profit_growth"], -0.0070, places=3)
-        self.assertAlmostEqual(result["profit_cagr"], -0.0015, places=3)
-        self.assertAlmostEqual(result["weighted_compound_growth"], -0.0043, places=3)
-
-    def test_irregular_year_intervals_are_annualized(self):
-        module = _load_module()
-
-        result = module.calculate_profit_growth_metrics(
-            [100.0, 121.0, 146.41],
-            [2020, 2022, 2024],
-        )
-
-        self.assertAlmostEqual(result["profit_cagr"], 0.10, places=6)
-        self.assertTrue(all(abs(value - 0.10) < 1e-6 for value in result["yoy_rates"]))
-
-    def test_filtering_and_trimming_drop_extremes(self):
-        module = _load_module()
-        method_results = {
-            "a": 0.02,
-            "b": 0.03,
-            "c": -0.01,
-            "d": 0.08,
-            "e": 0.60,
-            "f": -0.04,
-        }
-
-        filtered = module.filter_method_results(method_results, max_abs_value=0.5)
-        trimmed = module.trim_extremes(filtered)
-
-        self.assertNotIn("e", filtered)
-        self.assertEqual(set(trimmed.keys()), {"a", "b", "c"})
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

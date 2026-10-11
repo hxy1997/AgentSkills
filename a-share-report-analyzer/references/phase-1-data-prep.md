@@ -1,187 +1,31 @@
-# Phase 1: Data Preparation
+# Phase 1 数据准备
 
-This phase builds the analysis inputs. The goal is not to write conclusions yet.
+## 身份与理解
 
-## Deliverables of phase 1
+确认名称、代码、市场、A/H/其他股份、币种和研究截止时间。用产品、付费客户、行业、法律/经营组织形式、地域、当前状态六个维度写一句业务理解；愿景与实际经营分开。列出尚无法解释的问题。
 
-Produce a clean working set with:
+## 数据包
 
-- company identity: company name, ticker, listing board, sector, sub-industry
-- latest valuation snapshot: market cap, PE, PB, dividend yield when relevant
-- historical valuation anchors: at least 5-year and 10-year percentile or median comparisons when available
-- multi-year financials: usually 5 to 6 reporting years
-- basic business summary
-- industry overlay research notes
-- valuation-anchor table status, version date, and freshness conclusion
-- K-line/trading-structure package status and key observations
-- macro-news/policy package status, external variables, and transmission-path notes
-- monetary-policy regime, real-yield, FX, liquidity, and commodity/product-price dependency map when material
-- broker-report and industry-research package status and key assumptions
-- capital-flow/chip package status and key pressure or support points
-- company-announcement package status and material events
-- a list of missing items and data-confidence notes
+- 尽量覆盖五至十年年度历史，至少五年用于趋势；不足时说明。最近中报/季报单列，不能把半年数直接当全年数或与全年增长混合。
+- 收入、归母净利、扣非及差异、EPS（基本与稀释）、ROE、普通股股东权益与BVPS、股份变化、分红。
+- 非金融：经营利润、CFO、资本开支、利息和租赁现金流、现金及受限部分、债务到期、营运资本、商誉、少数股东权益，及资本回报所需字段。
+- 金融：普通股收益、资产质量、资本约束及分配能力，按行业参考替换工业指标。
+- 客户/供应商依赖，资本配置、关联交易、股权激励、审计及资金占用证据。
+- 报价保留成交时间与股份类别；A/H不能互代，当前总市值与模型普通股权益价值分开。
+- 五/十年估值分位如能可靠取得则列样本频率、期间和算法；缺完整序列则记不可得，不用指数或同行分位替代。
 
-## Core data checklist
+## 补充证据与行业方法库
 
-### A. Valuation baseline
+按 `evidence-packages.md` 核查公告、研报、宏观、交易结构、资金/筹码五类证据，按重要性标充分/部分/缺失/不适用。重大公告与财务事实必须核对；技术指标和订单分类资金流按研究问题选取，不要求每家公司收齐分钟线或均线。
 
-- latest market cap
-- current `PE`
-- current `PB`
-- industry median or comparable-company range
-- 5-year valuation position
-- 10-year valuation position
+按 `valuation-anchor-framework.md` 查找行业方法记录，核查日期、来源、公司与周期适用性。文件缺失或过期时可以用当前可核验证据在报告内重建方法依据；不把固定方法库当作行业研究的替代品。
 
-### B. Multi-year financials
+商品、周期、出口或海外敞口重大时，按 `macro-policy-transmission.md` 建立政策→价格/需求/汇率/融资→公司财务→估值的传导链；准备商品情景价格、产销量、成本、持股权益、套保和税费，缺关键敞口就降低敏感性结论强度。
 
-Use at least 5 years when possible:
+## 数据质量与时点
 
-- revenue
-- attributable net profit
-- ROE
-- operating cash flow
-- free cash flow when meaningful
-- debt and cash structure
-- dividend or buyback history when relevant
+记录每项来源URL、报告页/表、单位、期间、公告日。官方披露负责会计事实，行情源负责价格，分析者负责假设。更正/重述优先，附注与报表冲突必须核对。
 
-### C. Business and industry context
+用户材料先理解，关键数值再与原披露核验。结构化数据不覆盖附注判断。金额单位转换在输入层完成，公式内不混用。
 
-- core products or services
-- revenue structure
-- profit drivers
-- customer type
-- geographic exposure
-- regulatory exposure
-- main competitors
-
-### D. Industry overlay package
-
-The overlay package is mandatory. It must answer:
-
-- what actually drives value in this sub-industry
-- which reported metrics are the most decision-useful
-- which accounting line items need caution
-- which valuation method is usually more informative
-- what the main cycle or policy risks are
-
-### E. Valuation-anchor package
-
-This package is mandatory before phase 3:
-
-- closest anchor table id
-- `last_updated` and `next_review_due`
-- freshness status from `scripts/check_valuation_anchor.py`
-- primary anchor
-- secondary anchors
-- weak or floor anchors
-- disabled anchors
-- current market pricing language
-- stale/missing handling
-
-If the anchor table is expired or missing, update or create it with current sources before valuation. If that cannot be done, mark the valuation portion incomplete.
-
-### F. K-line and trading-structure package
-
-Load `references/evidence-packages.md` and collect:
-
-- latest quote and recent return
-- 120 trading days of daily K-line when available
-- MA5, MA10, MA20, MA60, MA120, MA250 position when available
-- volume, amount, turnover, amplitude, drawdown, rebound, gap, and limit-up/down context
-- abnormal trading days linked to announcements, sector moves, or market-wide shocks
-
-### G. Macro-news and policy-environment package
-
-Load `references/evidence-packages.md` and collect:
-
-- macro events and policy changes that can affect the target's sector
-- sector-specific price, demand, inventory, capacity, cost, exchange-rate, or funding variables
-- broad market and sector risk-appetite context when it changes valuation timing
-- source, date, affected variable, and expected duration for each material event
-- transmission path: event -> company variable -> financial statement or valuation assumption
-
-If monetary policy, FX, global liquidity, or commodity prices materially affect the company, also load `references/macro-policy-transmission.md` and collect:
-
-- policy rate and expected path rather than one isolated meeting
-- 2-year yield, 10-year nominal yield, and 10-year real yield when relevant
-- inflation expectations, yield-curve shape, credit spreads, and central-bank liquidity when relevant
-- `DXY` or the company's relevant revenue, cost, debt, and capex exchange rates
-- spot price, company realized price, and cycle-normalized price for each material commodity
-- attributable production, unit cost or `AISC/C1`, hedging, royalties, taxes, minority interests, and JV ownership
-- a bear/base/bull external-variable table
-- a shock ledger identifying earnings, financing, discount-rate, and multiple effects without double counting
-
-For commodity-driven companies, a generic consensus-earnings haircut is not a substitute for an explicit price deck.
-
-### H. Broker-report and industry-research package
-
-Load `references/evidence-packages.md` and collect:
-
-- recent company reports, rating changes, target prices, EPS forecasts, and valuation methods
-- industry reports for the confirmed sub-industry
-- consensus estimate direction and assumption dispersion
-- report freshness, source institution, and whether original PDF or official page was checked
-
-### I. Capital-flow and chip package
-
-Load `references/evidence-packages.md` and collect:
-
-- minute or daily fund flow when available
-- 60 to 120 trading days of main-force or order-size flow
-- northbound flow when applicable
-- margin financing and securities lending
-- dragon-tiger list, block trades, lockup expiry, shareholder count, dividends, and buybacks when available
-
-### J. Company-announcement package
-
-Load `references/evidence-packages.md` and collect:
-
-- latest 6 to 12 months of official announcements
-- periodic reports, performance previews, major contracts, M&A, incentives, buybacks, dividends, refinancing, pledges, guarantees, lawsuits, penalties, and inquiry letters
-- material older announcements that still affect current valuation
-- execution status: reflected in financials, pending, delayed, failed, or unclear
-
-## Subagent requirement
-
-If subagent tooling exists, create a dedicated research subagent during this phase.
-
-Recommended prompt shape:
-
-- research only the target company's sub-industry
-- summarize business model, key operating KPIs, accounting quirks, common valuation anchors, and major risks
-- distinguish stable principles from current-cycle facts
-- provide concise notes that can be merged into the main report
-
-If subagents are unavailable, do the same work locally.
-
-## Valuation-anchor requirement
-
-Load `references/valuation-anchor-framework.md` and run:
-
-```bash
-python3 scripts/check_valuation_anchor.py --sub-industry "<confirmed sub-industry>"
-```
-
-If the alias match is uncertain, use `--list` to inspect available anchor ids. If no suitable anchor exists, create a new `valuation_anchors/<anchor_id>.json` record from current evidence before phase 3.
-
-## Source strategy
-
-Use the following priority:
-
-1. User-provided data, screenshots, and prior calculations
-2. Structured market and financial data
-3. Annual reports and official company disclosures
-4. Company announcements and exchange or company IR disclosures
-5. Macro-policy releases, commodity/industry data, and market-regime sources
-6. Broker reports and industry public materials
-7. K-line, capital-flow, chip, and event data from structured providers
-8. Web search for missing or current items
-
-For implementation notes and the user's external data project, load `data-source-strategy.md`.
-
-## Data-quality rules
-
-- Never mix periods inside one formula.
-- Mark estimated values clearly.
-- Note when trailing data, annual data, or interim data are mixed across sections.
-- If a metric is unavailable for a sector, say it is not decision-useful rather than forcing it.
+在本阶段完成子行业研究并明确估值方法适用性；子代理返回的证据仍需主分析者核对。

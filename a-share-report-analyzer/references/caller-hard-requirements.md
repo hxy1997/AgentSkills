@@ -1,40 +1,14 @@
-# Caller Hard Requirements
+# 严格调用要求
 
-Use this block when you want strict compliance instead of a loosely structured research memo.
-
-## Reusable strict prompt block
+可复用调用块：
 
 ```text
-Hard requirements:
-1. Execute the full three-phase workflow in order. Do not skip any phase.
-2. Follow the heading order defined by report-template.md. Do not collapse the output into a free-form summary.
-3. The report must include:
-   - company identification plus sector and sub-industry confirmation
-   - 5-year and 10-year valuation-position table; if missing, state the missing item and its impact
-   - sub-industry valuation-anchor table status, including anchor id, version date, freshness status, primary anchor, secondary anchor, and stale/missing handling
-   - 5-6 year financial table
-   - six-method profit-growth table, filter rule, trimming process, and weighted_compound_growth
-   - K-line/trading-structure evidence package status and key observations
-   - macro-news/policy evidence package status, key external variables, and transmission path to financial or valuation assumptions
-   - monetary-policy regime, real-yield, FX, liquidity, and external-variable transmission when decision-useful
-   - commodity price deck and deterministic price sensitivity when commodity prices materially drive earnings
-   - broker-report and industry-research evidence package status, key assumptions, and estimate dispersion
-   - capital-flow/chip evidence package status, including fund flow, margin, dragon-tiger, block trade, lockup, and shareholder-count items when available
-   - company-announcement evidence package status, material announcements, and missing-disclosure impact
-   - all six body-analysis sections, each with a score and short justification
-   - 2-3 peer comparisons by default
-   - one main valuation method plus one cross-check method chosen from a fresh valuation-anchor table; if the table is stale or missing, update/create it first or mark valuation incomplete
-   - E, F, avg_dev, LOW, and UP
-   - implied market-cap interval and implied price interval
-   - core evidence and key risks
-4. Separate facts from judgment. Treat official announcements as primary-source facts, broker reports as sourced opinions, macro-news/policy as external-variable evidence, and K-line/capital-flow data as timing or risk evidence rather than intrinsic-value proof.
-5. If any key data or evidence package is missing, do not skip it. Explicitly state what is missing and how it affects confidence, scoring, valuation, or conclusion.
-6. Do not replace an explicit commodity price deck with a generic earnings haircut, and do not double count the same monetary-policy shock through prices, earnings, discount rates, and multiples.
-7. Output a complete Markdown report, not an executive summary.
-8. Save each report to the requested directory and return the file path.
-9. Before finalizing, run a template-compliance self-check. List satisfied and missing items. If anything mandatory is still missing, continue or mark the report incomplete.
+使用 a-share-report-analyzer 的新版框架研究指定公司。完成数据准备、企业质量和估值验证三阶段，按 report-template 输出完整中文报告。
+确认代码/股份类别/币种与财报、行情实际日期。官方披露为财务主证据。
+展示多年财务、资本或行业替代回报、每股增长、现金/资本桥接、股东友好度、同行及底线判断。
+核查五类证据包的重要性、行业方法记录的日期与适用性；商品/海外敞口重大时补充价格情景、敞口敏感性和宏观传导。持仓/组合请求按相应模式缩放，成本不改变内在价值，输出脱敏且不执行交易。
+估值使用显式情景、主方法与不同视角交叉检查、安全边际和敏感性，不使用旧六法合成增长或G动作矩阵。
+加入市场环境、预期差与估值传导小节：选取相关资金条件、股市资金行为及盈利预期证据，注明来源和日期；在模型适用且数据足够时反推当前价格隐含假设，说明固定参数、公司传导与估值调整理由。缺失说明限制；不把流动性直接变成择时信号，不重复计入同一利好。
+事实、计算、假设、判断分开；来源含URL及页表。数据缺失说明影响，无法支持的估值标条件性或暂缓。
+列反证、跟踪条件和完成检查，保存到本次指定输出目录。计算真实运行，不能把样例执行称作收益回测。
 ```
-
-## Usage note
-
-When dispatching subagents, paste the block directly into the subagent task instead of only mentioning the skill name. This materially reduces format drift.

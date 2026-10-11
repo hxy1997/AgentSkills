@@ -1,50 +1,21 @@
-# Sector Overlay: Bank
+# 银行业叠加
 
-Use this reference for commercial banks and similar banking institutions.
+银行以存款及其他融资支持信贷、投资和支付服务，负债是生产要素。不能用工业CFO−capex、EV/EBIT、一般资产负债率或ROCE硬判银行质量。
 
-## Why the generic framework is not enough
+## 普通股与资本回报
 
-Banks are balance-sheet-driven businesses. Asset quality, funding structure, margins, and capital adequacy are core operating drivers.
+区分归母净利润与扣除优先股/永续债分配后的普通股利润；普通股BVPS也排除其他权益工具。用官方基本/稀释EPS核验。ROE年度与年化中期分开。
 
-## Financial-analysis focus
+查NIM、生息资产、存款成本/活期占比、手续费与财富管理、成本收入比、信用成本、NPL、关注/逾期、拨备覆盖与核销、房地产及集中暴露。单一不良率或覆盖率下降不能孤立解释。
 
-Prioritize:
+检查CET1、总资本、风险加权资产增长、监管最低要求和额外缓冲。高级法与权重法不能直接横比；若同行法不同，找共同口径或明确不可比。监管要求引用当前官方文本，不能凭记忆设阈值。
 
-- net interest margin or equivalent spread indicators
-- loan growth and deposit growth quality
-- non-performing assets and migration trends
-- provision coverage and credit-cost trend
-- capital adequacy
-- liquidity coverage or related liquidity strength
-- fee income diversification
-- return on assets and return on equity
+增长需要留存资本：结合分红、资产/RWA增速、资本缓冲、再融资成本评估普通股可分配能力。其他权益工具融资不是普通股免费资本。
 
-## Asset-quality lens
+## 估值
 
-The critical question is not only current earnings, but whether the balance sheet can support those earnings.
+优先普通股PB-可持续ROE/股权成本逻辑，交叉看正常化盈利倍数、分红承受或信用压力。稳态PB=(ROE−g)/(Ke−g)，Ke>g，g/ROE为隐含留存率；假设必须与监管资本和资产增长相容。阶段性净息差下降不可机械永续外推。
 
-Assess:
+银行股利/剩余收益模型若使用相同ROE、g、Ke，可能只是同一个模型的代数变形；不能当独立证据平均。压力情景应联动信用成本、利润、净资产和资本，不能只降低倍数。
 
-- bad-loan pressure
-- provisioning sufficiency
-- concentration risks
-- whether capital is being consumed too fast for the observed growth
-
-## Cash-flow caution
-
-Do not judge a bank with the same free-cash-flow logic used for industrial companies. Cash-flow statement interpretation must be subordinated to asset-liability and capital analysis.
-
-## Valuation reminders
-
-Common anchors:
-
-- `PB`
-- `ROE`
-- dividend yield
-- cycle and credit-cost normalized earnings
-
-Explain why the chosen valuation anchor fits the bank's earnings quality and balance-sheet strength.
-
-## Current-regulation reminder
-
-Capital and liquidity standards can change. Verify current regulatory definitions when they matter to the conclusion.
+股东友好度仍查关联授信、控股股东、薪酬激励、分红、优先/永续分配及普通股融资。A/H实际市值与按A股价折算的权益价值分别标注。
