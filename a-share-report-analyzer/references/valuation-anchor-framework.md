@@ -1,115 +1,41 @@
-# Valuation Anchor Framework
+# 行业估值方法库与版本核查
 
-Use this reference whenever phase 1 or phase 3 needs to choose valuation methods.
+`valuation_anchors/*.json` 保存子行业常用方法、适用条件、周期背景与来源。它是研究起点；市场当前流行的估值语言不能证明内在价值，也不能覆盖普通股现金流、资本约束和会计事实。
 
-## Core rule
+## 使用步骤
 
-Do not hard-code valuation anchors by sector. Use a versioned sub-industry anchor table that captures the current market pricing language.
+1. 确认子行业后，用 `scripts/check_valuation_anchor.py --sub-industry "<子行业>" --as-of-date YYYY-MM-DD` 检查记录。匹配不确定时先用 `--list` 查看，不强套相近行业或境外市场记录。
+2. `ok` 只表示记录日期未过期。仍须核对来源、研究截止日可获得性、`valid_when` / `invalid_when`、公司特征及近期重大事件；不能直接把记录内周期判断当作当前事实。
+3. `expired` 或 `missing` 时，用当前可追溯证据在报告内重建方法依据；有必要才保存为新记录。不能仅改日期来“刷新”。`not_yet_available` 表示记录晚于研究截止日，应寻找当时版本或当时已公开的证据。
+4. 原记录是否过期与公司是否可估值分开。只要独立证据足以支持方法，仍可给出估值并说明替代依据；若关键证据不足，则标条件性或暂缓，经营研究可以完成。
 
-The anchor table does not replace analysis. It decides which valuation methods deserve the most weight today, and which methods should be treated only as cross-checks or asset-floor references.
+## 日期与事件
 
-## Required phase-1 check
+记录优先用 `refresh_interval_days` 与 `next_review_due`。快速变化科技行业通常100天复核，成熟/消费/周期行业通常190天；这些是维护窗口，不是有效性保证。重大政策、资本约束、行业盈利模式或价格周期变化可使记录在日期到期前失效。
 
-After identifying sector and sub-industry:
+历史研究不得使用研究截止日之后的记录或来源。日期检查工具不能识别网页后续修订和记录内全部引用日期，分析者须另核对。
 
-1. Find the closest `valuation_anchors/*.json` record.
-2. Run `scripts/check_valuation_anchor.py`.
-3. If status is `ok`, use the table.
-4. If status is `expired`, update the table with current sources before phase 3.
-5. If status is `missing`, create a new table or mark the valuation incomplete.
+## 保留的记录结构
 
-Never skip this check for technology, healthcare innovation, financial, energy transition, or other fast-changing sectors.
+沿用现有字段，避免破坏已有数据：
 
-## Default freshness windows
+- 标识：`anchor_id`、`display_name`、`sector`、`sub_industry`、`aliases`。
+- 版本：`last_updated`、`next_review_due`、`refresh_interval_days`。
+- 方法：`primary_anchor`、`secondary_anchors`、`weak_or_floor_anchors`、`disabled_anchors`。
+- 依据：`current_cycle_state`、`anchor_switch_rationale`、`valid_when`、`invalid_when`、`peer_set`、`market_pricing_language`、`key_cycle_indicators`、`confidence`、`sources`、`analyst_notes`。
 
-Use the record's `refresh_interval_days` when present. Otherwise use:
+更新时引用具体材料、日期、URL与关键依据，不只列机构主页。将稳定行业原则与会变化的周期假设分开；跨市场公司可作业务参照，但监管、风险溢价、会计、币种与股份类别不能直接照搬。
 
-| Sector type | Freshness window |
-| --- | ---:|
-| Semiconductors, AI, innovative drugs, military electronics | 100 days |
-| Consumer, industrial manufacturing, cyclicals | 190 days |
-| Banks, utilities, telecom operators | 190 days |
-| Major policy, price-cycle, or market-valuation regime change | Immediately stale |
+## 如何选方法
 
-For commodity, export, overseas, or dollar-linked businesses, treat the anchor as immediately stale when a material change in real yields, FX, global liquidity, commodity-price regime, sanctions, taxes, or country risk invalidates the prior price deck or discount rate.
+主方法先回答企业如何产生可分配收益，再考虑市场参照。方法库中的 `weight` 是定性提示，不是机械加权系数。
 
-## Anchor table fields
+- 银行：普通股PB-ROE、剩余收益或资本约束下股利模型；PB-ROE与股利模型可能代数相关，不冒充独立交叉验证。
+- 稳定企业：正常化PE、FCF、DCF或EV/经营利润，按可见度及资本需要选择。
+- 周期/商品：周期正常化盈利、NAV/DCF及显式价格情景；账面价值只作经核验的参照，不是自动保底价。
+- 亏损/转型科技：收入或毛利、正常化利润、SOTP等需有利润率、资本消耗、稀释与转正约束；历史增长率不直接用于未来估值。
+- 管线研发：风险调整现金流需披露成功概率、里程碑与现金存续期，缺乏证据不凭行业倍数硬估。
 
-Each valuation-anchor JSON should include:
+选择经济视角不同的交叉检查；同行/历史倍数可供比较，但安全边际价格不是第二个独立估值。输出方法版本、适用性判断、主方法/交叉方法及推翻条件。商品、汇率或利率假设与 `macro-policy-transmission.md`、`market-liquidity-expectations.md` 共用一次假设调整记录。
 
-- `anchor_id`
-- `display_name`
-- `sector`
-- `sub_industry`
-- `aliases`
-- `last_updated`
-- `next_review_due`
-- `refresh_interval_days`
-- `current_cycle_state`
-- `primary_anchor`
-- `secondary_anchors`
-- `weak_or_floor_anchors`
-- `disabled_anchors`
-- `anchor_switch_rationale`
-- `valid_when`
-- `invalid_when`
-- `peer_set`
-- `market_pricing_language`
-- `key_cycle_indicators`
-- `confidence`
-- `sources`
-- `analyst_notes`
-
-## Updating a stale anchor
-
-When an anchor is stale, research:
-
-- current peer multiples and dispersion
-- current industry cycle drivers
-- whether the market is paying for revenue, orders, capacity, AI exposure, localization, normalized earnings, cash flow, or asset backing
-- whether the old primary anchor is still the dominant market language
-- what would invalidate the current anchor
-- whether policy, real-yield, FX, liquidity, or commodity-price changes require a new price deck or discount rate
-
-Then update:
-
-- `last_updated`
-- `next_review_due`
-- `current_cycle_state`
-- `primary_anchor`
-- `secondary_anchors`
-- `disabled_anchors`
-- `anchor_switch_rationale`
-- `peer_set`
-- `market_pricing_language`
-- `sources`
-
-If current data cannot be verified, do not force an update. Mark the report incomplete and explain the missing evidence.
-
-## Phase-3 usage
-
-The valuation section must show:
-
-- anchor table id and version date
-- freshness status
-- primary anchor and why it fits the current cycle
-- secondary or cross-check anchor
-- weak/floor anchors and why they are downgraded
-- disabled anchors and why they are not decision-useful
-- conditions that would make the valuation anchor stale before the next scheduled review
-- material external-variable assumptions and double-counting controls when the anchor depends on commodity prices, FX, or rates
-
-## Technology-company guidance
-
-For technology companies, classify the business before selecting anchors:
-
-| Type | Examples | Common current anchors |
-| --- | --- | --- |
-| Cyclical technology | memory, panels, some components | `PS`, `EV/Sales`, normalized `PE`, sometimes `PB` floor |
-| Equipment or hard-tech manufacturing | semicap equipment, industrial automation | orders, revenue, `PE`, `PEG`, `EV/EBITDA` |
-| Platform R&D | AI chips, EDA, foundational software | `PS`, SOTP, milestone value, long-term normalized earnings |
-| Software or SaaS-like | industrial software, cloud | ARR/revenue multiple, Rule of 40, FCF |
-| Biotech innovation | innovative drugs | rNPV, pipeline SOTP, cash runway |
-| Mature technology leader | stable hardware/software leaders | `PE`, FCF, ROIC, shareholder return |
-
-If profit history contains multiple loss years or crosses break-even, do not let `weighted_compound_growth` mechanically drive valuation. Use revenue, gross profit, normalized margin, SOTP, or current-cycle anchors, and state why profit CAGR is not decision-useful.
+日期检查的 `action_required` 提示分别是 `verify_sources_and_applicability`、`refresh_evidence_before_valuation`、`establish_method_from_current_evidence`、`use_record_available_at_cutoff`。单记录命令退出码：0=日期可用，1=过期，2=缺失，3=晚于截止日；`--list` 返回全部状态供逐项检查。

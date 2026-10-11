@@ -1,6 +1,8 @@
 import importlib.util
 import json
 import tempfile
+import subprocess
+import sys
 import unittest
 from datetime import date
 from pathlib import Path
@@ -32,7 +34,7 @@ class TestCheckValuationAnchor(unittest.TestCase):
         result = module.check_anchor_freshness(anchor, date(2026, 5, 25))
 
         self.assertEqual(result["status"], "ok")
-        self.assertEqual(result["action_required"], "use_anchor")
+        self.assertEqual(result["action_required"], "verify_sources_and_applicability")
 
     def test_expired_anchor_requires_update(self):
         module = _load_module()
@@ -48,7 +50,30 @@ class TestCheckValuationAnchor(unittest.TestCase):
         result = module.check_anchor_freshness(anchor, date(2026, 5, 25))
 
         self.assertEqual(result["status"], "expired")
-        self.assertEqual(result["action_required"], "update_anchor_before_valuation")
+        self.assertEqual(result["action_required"], "refresh_evidence_before_valuation")
+
+    def test_future_record_is_unavailable_until_publication(self):
+        module = _load_module()
+        anchor = {"anchor_id": "bank", "last_updated": "2026-05-26"}
+        before = module.check_anchor_freshness(anchor, date(2026, 5, 25))
+        on_date = module.check_anchor_freshness(anchor, date(2026, 5, 26))
+        self.assertEqual(before["status"], "not_yet_available")
+        self.assertEqual(before["action_required"], "use_record_available_at_cutoff")
+        self.assertEqual(on_date["status"], "ok")
+
+    def test_future_record_cli_exits_nonzero(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, "bank.json").write_text(
+                json.dumps({"anchor_id": "bank", "last_updated": "2026-05-26"}),
+                encoding="utf-8",
+            )
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT_PATH), "--anchors-dir", tmp,
+                 "--anchor-id", "bank", "--as-of-date", "2026-05-25"],
+                capture_output=True, text=True, check=False,
+            )
+        self.assertEqual(result.returncode, 3)
+        self.assertEqual(json.loads(result.stdout)["status"], "not_yet_available")
 
     def test_alias_matching(self):
         module = _load_module()

@@ -1,4 +1,4 @@
 interface:
   display_name: "A-Share Report Analyzer"
-  short_description: "A股基本面、技术面、行业比较、宏观传导与情景估值研究"
-  default_prompt: "Use $a-share-report-analyzer to produce an evidence-backed A-share report with industry, macro-policy, valuation, and trading-structure analysis."
+  short_description: "A股经营质量、股东回报、市场预期、行业宏观传导与情景估值研究"
+  default_prompt: "Use $a-share-report-analyzer to research an A-share company's owner returns, industry economics, market expectations, and scenario valuation with traceable evidence and a margin of safety."

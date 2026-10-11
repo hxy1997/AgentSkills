@@ -1,68 +1,64 @@
 import importlib.util
-import unittest
 from pathlib import Path
+import unittest
+import json
+import os
+import subprocess
+import sys
+import tempfile
+
+spec = importlib.util.spec_from_file_location('valuation', Path(__file__).resolve().parents[1] / 'scripts/calc_valuation_zone.py')
+valuation = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(valuation)
 
 
-SCRIPT_PATH = Path(__file__).resolve().parents[1] / "scripts" / "calc_valuation_zone.py"
+class ValuationTests(unittest.TestCase):
+    def run_one(self, method, **kwargs):
+        return valuation.calculate_scenarios({'current_price': 10, 'share_count': 100,
+            'scenarios': [{'name': 'base', 'method': method, 'margin_of_safety': 0.2, **kwargs}]})['scenarios'][0]
 
+    def test_value_and_safety_margin_are_distinct(self):
+        result = self.run_one('pe', eps=1, multiple=12)
+        self.assertAlmostEqual(result['intrinsic_price'], 12)
+        self.assertAlmostEqual(result['safety_margin_price'], 9.6)
+        self.assertFalse(result['price_at_or_below_safety_margin'])
 
-def _load_module():
-    spec = importlib.util.spec_from_file_location("calc_valuation_zone", SCRIPT_PATH)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+    def test_bank_pb_payout_consistency(self):
+        result = self.run_one('bank_pb', bvps=40, roe=0.12, growth=0.03, cost_of_equity=0.10)
+        self.assertAlmostEqual(result['intrinsic_price'], 40 * 0.09 / 0.07)
+        self.assertAlmostEqual(result['implied_payout'], 0.75)
 
+    def test_bank_invalid_growth_rejected(self):
+        for g in (0.10, 0.12, -0.01):
+            with self.assertRaises(ValueError):
+                self.run_one('bank_pb', bvps=40, roe=0.12, growth=g, cost_of_equity=0.10)
 
-class TestCalcValuationZone(unittest.TestCase):
-    def test_zone_calculation_matches_user_logic(self):
-        module = _load_module()
-
-        result = module.calculate_valuation_zone(
-            current_market_cap=1656.0,
-            current_price=21.5,
-            intrinsic_market_cap=1280.04,
-            safe_market_cap=1790.60,
-            quality_score_g=0.744,
-            dev_5y=-0.2637,
-            dev_10y=-0.3091,
-        )
-
-        self.assertAlmostEqual(result["E"], 0.2937, places=3)
-        self.assertAlmostEqual(result["F"], -0.0752, places=3)
-        self.assertAlmostEqual(result["avg_dev"], -0.0886, places=3)
-        self.assertAlmostEqual(result["LOW"], -0.2419, places=3)
-        self.assertAlmostEqual(result["UP"], 0.1339, places=3)
-        self.assertEqual(result["quality_bucket"], "中公司")
-        self.assertEqual(result["price_bucket"], "中价")
-        self.assertEqual(result["stance"], "估值合理，中性复核")
-        self.assertLess(result["lower_price"], result["upper_price"])
-
-    def test_quality_score_mapping_and_boundaries(self):
-        module = _load_module()
-
-        self.assertAlmostEqual(module.quality_score_to_g(8.6), 0.86)
+    def test_ev_claims_reduce_equity(self):
+        self.assertAlmostEqual(self.run_one('ev_ebit', operating_profit=200, multiple=10, net_claims=500)['intrinsic_price'], 15)
         with self.assertRaises(ValueError):
-            module.calculate_valuation_zone(
-                current_market_cap=100,
-                current_price=10,
-                intrinsic_market_cap=110,
-                safe_market_cap=90,
-                quality_score_g=0,
-                dev_5y=0,
-                dev_10y=0,
-            )
+            self.run_one('ev_ebit', operating_profit=20, multiple=10, net_claims=500)
 
+    def test_missing_quote_does_not_become_zero(self):
+        result = valuation.calculate_scenarios({'share_count': 100, 'scenarios': [
+            {'name': 'base', 'method': 'equity_value', 'equity_value': 1000, 'margin_of_safety': 0.2}]})
+        self.assertIsNone(result['scenarios'][0]['discount_to_intrinsic'])
+
+    def test_dividend_and_invalid_margin(self):
+        self.assertAlmostEqual(self.run_one('dividend', next_dividend=1, growth=0.02, cost_of_equity=0.10)['intrinsic_price'], 12.5)
         with self.assertRaises(ValueError):
-            module.calculate_valuation_zone(
-                current_market_cap=100,
-                current_price=10,
-                intrinsic_market_cap=110,
-                safe_market_cap=90,
-                quality_score_g=0.1,
-                dev_5y=0,
-                dev_10y=0,
-            )
+            self.run_one('pe', eps=1, multiple=10, margin_of_safety=1)
+
+    def test_cli_outputs_utf8_even_with_ascii_console(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'input.json'
+            path.write_text(json.dumps({'share_count': 100, 'scenarios': [
+                {'name': '保守', 'method': 'pe', 'eps': 1, 'multiple': 10,
+                 'margin_of_safety': 0.2}]}, ensure_ascii=False), encoding='utf-8')
+            env = {**os.environ, 'PYTHONIOENCODING': 'ascii'}
+            result = subprocess.run([sys.executable, str(Path(valuation.__file__)), '--input', str(path)],
+                                    capture_output=True, env=env, check=True)
+            self.assertEqual(json.loads(result.stdout.decode('utf-8'))['scenarios'][0]['name'], '保守')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

@@ -1,131 +1,34 @@
-# Phase 3: Valuation and Conclusion
+# Phase 3 估值与验证
 
-This phase turns the analysis into a valuation view and a final judgment.
+先确认底线判断和方法适用性，再做估值。证据不足时可做条件性情景，但不称为可执行结论。
 
-## Required outputs
+## 市场环境、预期差与估值传导
 
-- valuation position summary
-- script-based growth-rate estimation
-- at least one primary valuation method
-- one cross-check or alternative method when useful
-- safety-margin discussion
-- valuation impact from macro-news and policy variables when they change demand, pricing, cost, financing, discount rate, regulation, or risk appetite
-- valuation impact from broker-report assumptions and material company announcements
-- timing or risk adjustment from K-line, capital-flow, and chip evidence when material
-- final conclusion table
-- model-implied price interval
+读取 `market-liquidity-expectations.md`。围绕公司选择重要指标，分别核查资金条件、股市资金行为与盈利预期；写明来源、期间、发布日及研究截止日可获得性。把证据连到公司收入、利润、资本要求或估值参数，说明调整哪些假设、哪些保持不变及理由。
 
-## Default sequence
+有可核验价格和适用模型时做反向估值：在其他假设固定下，当前价格需要怎样的盈利、ROE或增长。区分模型隐含条件、分析师一致预期和研究者自身假设。数据不足则保留简短缺口说明，不编造“市场共识”，也不因资金活跃自动抬高合理估值。
 
-### 1. Valuation position
+## 方法选择
 
-Compute or summarize:
+参考 `valuation-anchor-framework.md` 核查行业方法的版本、来源和适用性。市场常用倍数只是参照，最终主方法取决于企业经济特征；方法库的新日期不能覆盖会计逻辑与资本约束。
 
-- current market cap
-- current `PE` and `PB`
-- 5-year valuation position
-- 10-year valuation position
+- 稳定非金融：正常化PE、FCFF/FCFE或EV/经营利润，按现金和会计可见度选主方法。
+- 银行：普通股PB-ROE、剩余收益或资本约束下股利模型。股利模型与PB-ROE可能代数相关，不能冒充独立验证；可另用当期盈利倍数/资本压力测试作交叉检查。
+- 券商保险：专门行业参考。
+- 周期：覆盖周期的盈利和压力情景；资产折价：可变现资产与负债；亏损/早期：若用PS，必须有利润率、再投资和转正约束，不能无条件给成熟企业倍数。
 
-### 2. Profit-growth estimation
+商品或海外敞口重大时应用 `macro-policy-transmission.md`：呈现现货、实现价、正常化情景价格、产量/成本/税费/套保/汇率的利润桥接，输入足够时运行商品敏感性工具。价格变化引起的EPS变化与整个企业每股价值分开；归属产量不再扣同一少数股东权益。贴现率与倍数的情景共用市场模块的调整记录。
 
-This step is mandatory and script-based:
+## 输出
 
-- load `references/growth-methodology.md`
-- run `scripts/calc_profit_growth.py`
-- show the 6-method table
-- show the filter rule, trimmed set, and average result
-- use `weighted_compound_growth` as the default growth output in later valuation steps
+1. 情景假设表：预测期间、驱动、资本要求、股份数、折现率/倍数依据。
+2. 主方法和不同经济视角的交叉检查，不机械平均。
+3. 保守/基准/乐观的普通股权益价值与每股价值；情景区间不是统计置信区间。
+4. 安全边际价格及为什么需要该折扣；内在价值区间与买入门槛分开。
+5. 最新可核验价格、日期和相对情景位置；若价格陈旧则只称该日价格比较。
+6. 敏感性、主要反证、跟踪指标和重估触发条件。
+7. 市场环境与预期差小节：关键证据、公司传导、价格隐含条件、假设调整记录及反证；避免同一利好重复计价。
 
-Do not replace this with a free-form narrative summary.
+历史估值位置在此阶段展示，有连续序列才算5/10年分位。同行及历史倍数是参照，不能证明内在价值。
 
-### 3. Main valuation method
-
-Pick the method from the fresh valuation-anchor table:
-
-- `PE` or `PEG` for stable profit businesses
-- `PB` and `ROE` logic for balance-sheet-heavy sectors
-- `PS` or `EV/Sales` for early or margin-transition businesses
-- `DCF` when cash-flow visibility is credible
-- mixed method when no single anchor is sufficient
-
-Show the anchor table id, `last_updated`, freshness status, primary anchor, and anchor-switch rationale. If the table is expired or missing, do not finalize valuation until it is updated or the report is labeled incomplete.
-
-Before finalizing the main method:
-
-- translate material macro-news and policy evidence into explicit growth, margin, multiple, discount-rate, commodity-price, or risk-premium assumptions
-- load `references/macro-policy-transmission.md` when rates, real yields, FX, liquidity, commodity prices, overseas funding, or global demand materially affect valuation
-- reconcile profit and growth assumptions with material official announcements
-- compare the selected growth or multiple with broker-report consensus and estimate dispersion
-- state whether any announcement creates a pending catalyst, execution risk, dilution risk, or regulatory risk
-- do not let K-line or capital-flow data determine intrinsic value, but use it to discuss timing risk, crowding, and confidence in near-term price behavior
-- do not let general macro-news heat determine intrinsic value unless the transmission path to company earnings or valuation is explicit
-
-### 3a. Commodity and monetary-policy overlay
-
-For commodity-driven companies, the main valuation is incomplete unless it shows or explicitly marks missing:
-
-- current spot price
-- company realized price when disclosed
-- cycle-normalized bear/base/bull price deck
-- attributable production and unit cost or `AISC/C1`
-- taxes, royalties, minority interests, JV ownership, hedging, and FX treatment
-- price sensitivity using `scripts/calc_commodity_sensitivity.py` when inputs are available
-
-Do not use a generic discount to consensus earnings as the only normalization method.
-
-For material monetary-policy exposure:
-
-- show policy expectations, real yields, FX, liquidity, and the reason for the policy stance
-- translate the regime through commodity/product prices, demand, financing, FX, discount rate, or risk premium
-- show DCF/NAV discount-rate sensitivity when terminal value or long-life assets are material
-- create a shock ledger and verify the same policy effect is not counted twice
-
-If policy has already changed the commodity price deck, do not apply a second unexplained policy haircut to earnings. A separately disclosed discount-rate change is allowed because it changes present value.
-
-### 4. Alternative method
-
-Use one cross-check where possible:
-
-- `DCF`
-- peer multiple comparison
-- downside case or safety-margin price
-- historical median valuation method
-
-The alternative method should normally come from `secondary_anchors`. Use `weak_or_floor_anchors` only as downside or balance-sheet support, and explain why `disabled_anchors` are not decision-useful.
-
-### 5. Final conclusion
-
-This step is mandatory and script-based:
-
-- load `references/final-conclusion-logic.md`
-- run `scripts/calc_valuation_zone.py`
-- show `E`, `F`, `avg_dev`, `LOW`, `UP`
-- classify company quality and price bucket
-- output the implied market-cap interval and price interval
-
-Summarize:
-
-- expected return logic
-- valuation gap or premium/discount
-- safety margin
-- whether evidence packages strengthen, weaken, or leave unchanged the valuation confidence
-- whether the stock looks low, fair, or expensive under the chosen framework
-- what research stance the logic matrix maps to; do not turn it into an executable order
-
-## Financial-sector rule
-
-For brokers, banks, and insurers:
-
-- do not force a standard industrial-company DCF if it is not decision-useful
-- prefer capital-return and balance-sheet-aware valuation discussion
-- explain why the chosen anchor fits the sector
-
-## Conflict rule
-
-If the generic valuation anchor and the industry-preferred anchor point in different directions:
-
-- show both
-- explain the disagreement
-- state which one carries more weight and why
-
-If the fresh valuation-anchor table and the generic sector rule disagree, the fresh anchor table carries more weight unless the evidence is weak. State the confidence level and invalidation conditions.
+计算用 `calc_valuation_zone.py` 或可复算的等价模型。读取 final-conclusion-logic。禁止用G或总评分自动生成交易动作。

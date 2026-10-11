@@ -22,6 +22,11 @@ class PortableProviderRoutingTest(unittest.TestCase):
     def test_a_share_is_not_misclassified_as_us(self):
         self.assertEqual(_market_tag(normalize_stock_code("600519")), "cn")
 
+    def test_hk_codes_are_not_misclassified_as_us(self):
+        for code in ("00700.HK", "HK00700", "hk700", "00700"):
+            with self.subTest(code=code):
+                self.assertEqual(_market_tag(normalize_stock_code(code)), "hk")
+
 
 if __name__ == "__main__":
     unittest.main()

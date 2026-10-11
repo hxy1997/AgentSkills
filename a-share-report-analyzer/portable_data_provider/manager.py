@@ -66,10 +66,10 @@ def _is_etf_code(code: str) -> bool:
 
 
 def _market_tag(code: str) -> str:
-    if _is_us_market(code):
-        return "us"
     if _is_hk_market(code):
         return "hk"
+    if _is_us_market(code):
+        return "us"
     return "cn"
 
 

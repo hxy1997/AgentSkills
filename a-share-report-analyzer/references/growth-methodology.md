@@ -1,76 +1,9 @@
-# Growth Methodology
+# 历史增长与未来假设
 
-Use this reference together with `scripts/calc_profit_growth.py`.
+运行 `python scripts/calc_profit_growth.py --profits "100,110,121" --years "2023,2024,2025"`；可传 `--shares`（同单位加权平均稀释股数）或 `--per-share`（官方稀释EPS）。二者互斥。
 
-## Mandatory method set
+输出逐期变化、按真实年份间隔计算的正值区间CAGR、正值且连续年度的同比中位数、每股增长和稀释信息。零/负利润及符号变化标为不可比，保留金额变化；跨亏损期间不输出常规CAGR。缺年不把跨期变化标成年同比。
 
-Always calculate profit-growth estimates with these six methods:
+v2 不再强制六算法、过滤±50%、去极值平均或 weighted_compound_growth。异常波动必须解释，不能静默删除。旧分位回归对同比增长率的时间斜率衡量增长变化，非增长水平，已移除。
 
-1. 线性回归增长率法
-2. 中位数增长率法
-3. 指数平滑法 (`alpha = 0.5`)
-4. 加权移动平均法
-5. Theil-Sen 稳健回归法
-6. 分位数回归法 (`q = 0.4`)
-
-## Fixed formulas
-
-### Profit CAGR
-
-Use actual year intervals, not observation count:
-
-- `profit_cagr = (last_profit / first_profit)^(1/(last_year-first_year)) - 1`
-- Annualize each period growth by its actual year gap. Never treat a two-year interval as one year.
-
-### Linear regression growth
-
-- Fit a least-squares line on actual year values.
-- Convert the slope into a growth rate by dividing it by average profit.
-
-### Median growth
-
-- Compute period-over-period profit growth rates.
-- Use the median of these growth rates.
-
-### Exponential smoothing
-
-- Use simple exponential smoothing with `alpha = 0.5`.
-- Convert the final smoothed profit level into an average growth rate across the actual year span.
-
-### Weighted moving average
-
-- Use period-over-period profit growth rates.
-- Use fixed weights: `[0.1, 0.15, 0.2, 0.25, 0.3]`.
-- If the sample is shorter than five intervals, align to the tail and renormalize the used weights.
-
-### Theil-Sen
-
-- Compute all pairwise slopes using actual year differences.
-- Use the median slope.
-- Convert slope into a growth rate by dividing it by average profit.
-
-### Quantile regression
-
-- Estimate the `q = 0.4` conditional level of the annualized period-over-period growth rates.
-- Use that robust growth-rate level as the method result; do not use a time slope of growth rates as if it were growth itself.
-
-## Fixed filtering rule
-
-1. Drop any method result with `abs(result) > 50%`.
-2. If valid results count is at least 4, remove the maximum and minimum values once each.
-3. Average the remaining values to get `estimated_avg_profit_growth`.
-4. Combine `estimated_avg_profit_growth` with `profit_cagr` using equal weights:
-   - `weighted_compound_growth = (profit_cagr + estimated_avg_profit_growth) / 2`
-
-## Output requirements
-
-Always show:
-
-- the 6-method table
-- the filtered results
-- the trimmed results
-- `estimated_avg_profit_growth`
-- `profit_cagr`
-- `weighted_compound_growth`
-
-If the script fails because the series contains zero or negative profit values, say so and explain which methods become unreliable.
+这些统计只描述历史，不合成为未来增长率。未来假设应由销量/价格/份额、毛利/费用、税费、再投资及股本变化构成；银行使用生息资产、息差、费用收入、信用成本和监管资本。至少给保守、基准、乐观情景，写清触发因素，不能靠机械复利外推周期高点。

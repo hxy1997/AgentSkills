@@ -1,135 +1,14 @@
-# Phase 2: Body Analysis
+# Phase 2 企业质量
 
-This phase produces the main narrative analysis. Use the fixed six-block structure below unless the user asks for a different order.
+按以下六块分析，行业指标融入对应部分，不另贴行业故事。每块区分事实、推断、反证和证据强度；分数可选，不强制总平均。
 
-## Six required sections
+1. **业务理解与经营稳定性**：如何赚钱、客户是谁、周期/政策/技术/地域暴露，收入与利润波动原因。解释不了的核心链条不能靠低估值补足。
+2. **历史资本效率与每股价值**：资本回报、现金回报、每股盈利/现金流/账面价值变化；剥离杠杆、稀释和回购对指标的影响。加载 owner-economics 和 growth-methodology。
+3. **未来竞争与成长质量**：客户与供应商广度、议价能力、替代品、新进入者、护城河来源及持续条件。现有竞争也要分析。增长拆成需求、份额、价格/组合、利润率、再投资和融资需求；说明新增资本回报能否覆盖资本成本。
+4. **股东友好度与资本配置**：加载 shareholder-friendliness。看薪酬持股、关联交易、融资与稀释、并购、分红与回购价值；资金能否到达普通股股东。
+5. **财务质量与生存能力**：利润到现金/资本的桥接、资产质量、偿债与融资压力、审计、受限现金、担保、营运资本。金融企业使用行业替代。
+6. **同行与底线判断**：通常二至三名同行，同期同口径比较；缺失指标明确。逐项记录通过/不通过/证据不足，说明是否有否决性问题，以及研究策略是否适用。
 
-1. `业务及产品清晰度`
-2. `经营稳定性`
-3. `产品定价权及定价权种类`
-4. `成长分析`
-5. `行业竞争度`
-6. `财务质量分析`
+护城河要有可检验证据，可来自成本、品牌、网络、转换成本、制度许可、渠道嵌入；高市占或高毛利本身不能证明持久护城河。
 
-## Section rules
-
-### 1. 业务及产品清晰度
-
-Cover:
-
-- main products or services
-- industry development logic and cycle attribute
-- business model and main profit sources
-- capital or working-capital pattern
-- material announcements that clarify or change the business structure
-- broker-report consensus and disagreement about the business model
-- business clarity score
-
-### 2. 经营稳定性
-
-Cover:
-
-- company stage in the industry cycle
-- revenue and profit volatility
-- internal operating risks
-- external environment sensitivity
-- macro-news and policy sensitivity, including rates, FX, commodity prices, demand cycle, regulation, and geopolitical shocks when material
-- when decision-useful, distinguish policy expectations, real yields, FX, liquidity, and demand effects instead of using a one-line rate rule
-- K-line volatility, drawdown, liquidity, and abnormal-trading evidence
-- capital-flow and chip-pressure evidence, especially lockup expiry, margin pressure, and block trades
-- stability score
-
-### 3. 定价权
-
-Cover:
-
-- source of pricing power
-- customer positioning and stickiness
-- evidence of premium pricing or weak pricing
-- macro or policy variables that change price power, such as commodity price cycle, tariffs, subsidies, price controls, procurement policy, or capacity restrictions
-- for price-taking commodity companies, separate external benchmark pricing from cost-curve, grade, recovery, and product-mix advantages
-- announcement or report evidence that supports or contradicts pricing power
-- pricing-power score
-
-### 4. 成长分析
-
-Cover:
-
-- what drove past growth
-- whether those drivers are repeatable
-- capacity or capability expansion
-- order backlog or project reserve where relevant
-- macro or policy catalysts that change demand runway, financing conditions, project execution, or valuation duration
-- for commodity-driven growth, separate volume growth from commodity-price inflation and show whether the price assumption is spot, realized, or cycle-normalized
-- broker-report EPS forecast direction and estimate dispersion
-- company announcements about orders, capacity, projects, M&A, incentives, or guidance
-- growth sustainability coefficient when useful
-- growth score
-
-For the quantitative growth block:
-
-- load `references/growth-methodology.md`
-- run `scripts/calc_profit_growth.py`
-- show the six-method result table
-- show the filtering, trimming, and averaging process
-- use `weighted_compound_growth` as the default growth output unless the sector clearly requires another anchor
-
-### 5. 行业竞争度
-
-Cover:
-
-- industry rivalry
-- concentration and market position
-- substitutes and barriers to entry
-- main competitors
-- industry-report evidence about supply-demand, price cycle, and valuation anchors
-- macro-policy evidence that changes industry supply-demand balance, entry barriers, or cross-border competition
-- monetary-policy and FX evidence when they change global demand, financing, inventories, or the cost of capital
-- competition score
-
-Hard requirements:
-
-- load `references/peer-comparison.md`
-- provide at least one peer, defaulting to two to three peers
-- output a comparison table
-- use `scripts/fetch_peer_snapshot.py` for baseline structured fields when possible
-- supplement sector-specific metrics when the baseline script does not provide them
-
-The competition score must be justified using the comparison table, not only narrative language.
-
-### 6. 财务质量分析
-
-Start from the generic financial-quality framework, then apply the industry overlay.
-
-At minimum assess:
-
-- asset quality
-- profit quality
-- cash-flow quality
-- financial-statement consistency or red flags
-- announcement-driven red flags: pledges, guarantees, lawsuits, inquiry letters, penalties, related-party transactions, refinancing, or audit changes
-- capital-flow/chip signals that may affect short-term financial risk, such as margin balance jumps, lockup expiry, and concentrated block trades
-- overall financial-quality score
-
-## Integration rule
-
-Do not write the industry overlay as a detached appendix. Instead:
-
-- inject industry KPIs into the relevant section
-- inject K-line, macro-news/policy, research-report, capital-flow/chip, and announcement evidence into the section where it changes the judgment
-- inject the external-variable dependency map and shock ledger when monetary policy, FX, liquidity, or commodity prices materially affect the company
-- change metric weights when the sector demands it
-- explain why the generic method is insufficient
-
-Examples:
-
-- Manufacturing may need inventory turns, capex intensity, and utilization.
-- SaaS or cloud may need recurring revenue, retention, and operating leverage.
-- Semicap may need orders, localization, and cycle timing.
-- Financial firms need sector-specific asset-liability and regulatory analysis.
-
-## Writing standard
-
-- Every score should have short justification.
-- Use data first, judgment second.
-- State both upside logic and fragility points.
+供应商/客户数量很多不证明分散，应查最大份额和共同依赖；披露缺失不等于集中。集中有替代来源、合同或转换成本缓冲时说明，不能机械套用书中10%阈值。

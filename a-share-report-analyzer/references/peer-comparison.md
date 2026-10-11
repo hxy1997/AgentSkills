@@ -57,9 +57,10 @@ Prefer peers that are:
 
 ## Data rule
 
-- Use `scripts/fetch_peer_snapshot.py` for baseline structured fields first.
+- Use `scripts/fetch_peer_snapshot.py`, an available market-data connector, or official disclosures for baseline fields; do not repeat calls when equivalent verified data already exists.
 - If sector-specific fields are not available, supplement them from current disclosures or reliable public sources.
 - Mark supplemented fields clearly if they come from manual or web-collected inputs.
+- Compare like periods and share classes. Mark annualized versus unannualized ROE, ordinary versus total equity, trailing versus forecast earnings, and differing regulatory measurement methods. Do not rank incomparable figures as if they were equivalent.
 
 ## Interpretation rule
 

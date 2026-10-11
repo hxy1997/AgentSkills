@@ -80,6 +80,25 @@ class TestCalcCommoditySensitivity(unittest.TestCase):
             result["implied_price_change_high"],
         )
 
+    def test_nonfinite_inputs_are_rejected(self):
+        module = _load_module()
+        inputs = dict(attributable_production=1000, price_change_usd=100,
+                      fx_cny_per_usd=7, pass_through_low=0.5, pass_through_high=0.7,
+                      shares_outstanding=10000, multiple_low=10, multiple_high=12)
+        for field in inputs:
+            for value in (float("nan"), float("inf"), float("-inf")):
+                with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                    module.calculate_commodity_sensitivity(**{**inputs, field: value})
+
+    def test_multiples_require_share_count(self):
+        module = _load_module()
+        with self.assertRaises(ValueError):
+            module.calculate_commodity_sensitivity(
+                attributable_production=1000, price_change_usd=100, fx_cny_per_usd=7,
+                pass_through_low=0.5, pass_through_high=0.7,
+                multiple_low=10, multiple_high=12,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,6 +2,8 @@
 
 Load this reference when monetary policy, real yields, FX, liquidity, commodity prices, overseas financing, or global demand materially affect the company.
 
+For the common market-context and expectations check, use `market-liquidity-expectations.md`. This reference extends that check for material company exposures; share the same source dates, scenario inputs and shock ledger instead of creating duplicate macro scores or adjustments.
+
 ## Contents
 
 - Core rule and materiality test
@@ -49,6 +51,8 @@ Collect current and recent direction, not one isolated meeting:
 - `DXY` or the relevant bilateral exchange rate
 - inflation, employment, activity, and financial-stress variables explaining the policy stance
 - central-bank balance sheet and broad liquidity when material
+
+Select the variables relevant to the exposure rather than requiring every country's full curve. Futures/OIS imply model- and risk-premium-dependent pricing, official projections are policymakers' forecasts, and 2-year yields are only proxies; do not label any of them as an unqualified market consensus. Use currency- and maturity-matched discount assumptions and the information available at the cutoff.
 
 Prefer official central-bank releases and market prices over media summaries.
 
@@ -105,6 +109,8 @@ Then adjust for:
 - hedging
 - product mix and payable-metal terms
 - production response, grades, recovery, and downtime
+
+Match production units to the quoted price unit and period (for example troy ounces versus metric tonnes). Attributable production already incorporates ownership: do not deduct the same minority/JV interest again. This exposure revenue is not necessarily consolidated accounting revenue, especially for equity-accounted JVs. The bundled calculator is a local, fixed-FX linear sensitivity; pass-through bridges that exposure to attributable profit after relevant incremental costs, taxes and hedges. It does not model full price/FX paths or substitute for a mine-life NAV. Recalculate separate scenarios when production, costs, hedges or FX change materially.
 
 Use `scripts/calc_commodity_sensitivity.py` when inputs are available. Treat the pass-through range as an analyst assumption, not a sourced fact.
 
@@ -165,7 +171,7 @@ Before finalizing, create a short shock ledger:
 Rules:
 
 - If policy has already lowered the commodity price deck, do not apply a second generic “policy earnings haircut.”
-- A separate discount-rate change is allowed because it affects present value, but disclose it.
+- A separate discount-rate change needs its own parameter basis and economic channel, not just a second label for the same risk; disclose and test it.
 - Do not apply both a lower normalized multiple and a higher DCF discount rate for the same risk without explaining why both are needed.
 - Do not count FX translation in both realized commodity price and a separate revenue uplift.
 
