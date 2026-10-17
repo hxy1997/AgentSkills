@@ -16,8 +16,8 @@ description: "分析 A 股公司的经营质量、股东回报与情景估值，
 ## 工作流
 
 1. **准备数据**：确认代码、交易所、股份类别、币种、研究截止日与策略类型。读取 `references/phase-1-data-prep.md` 和 `references/data-source-strategy.md`。按 `references/evidence-packages.md` 核查公告、研报、宏观、交易结构与资金证据的重要性；按 `references/valuation-anchor-framework.md` 核查行业方法库。先形成业务理解与会计口径，再解读已采集的价格数据。
-2. **判断企业质量**：读取 `references/phase-2-body-analysis.md`、`references/owner-economics.md`、`references/shareholder-friendliness.md`。用历史资本回报与每股增长、未来竞争结构、资本配置、财务生存能力形成判断。
-3. **估值与持续验证**：读取 `references/phase-3-valuation-conclusion.md`、`references/market-liquidity-expectations.md`、`references/final-conclusion-logic.md`。核查市场环境、价格隐含预期与公司传导，再分开呈现估值情景、安全边际和历史估值位置，写明反证与跟踪条件。
+2. **判断企业质量**：先读取 `references/accounting-evidence-review.md`，核验财报、附注与当期管理层沟通，保留报表原值到正常化值的调整依据。读取 `references/phase-2-body-analysis.md`、`references/owner-economics.md`、`references/shareholder-friendliness.md`。用历史资本回报与每股增长、未来竞争结构、资本配置、财务生存能力形成判断。
+3. **估值与持续验证**：先按 `references/business-to-value.md` 建立业务驱动、短中长期情景及利润—现金—资本桥接，再估值；金融和资产折价策略按其经济实质替换。读取 `references/phase-3-valuation-conclusion.md`、`references/market-liquidity-expectations.md`、`references/final-conclusion-logic.md`。核查市场环境、价格隐含预期与公司传导，再分开呈现估值情景、安全边际和历史估值位置，写明反证与跟踪条件。
 
 每家公司均应用 `references/industry-overlay-principle.md`；按 `references/industry-research-checklist.md` 研究子行业。可用子代理时，将行业研究委派给专门子代理，再由主分析者核验和整合。多公司示例可分别委派行业证据收集，避免重复取数。对本 skill 的实质改版，可让独立子代理按新版完成一次样例前向验证。
 
@@ -26,6 +26,9 @@ description: "分析 A 股公司的经营质量、股东回报与情景估值，
 商品价格、海外需求、外币收支或利率敏感性重大时，另读 `references/macro-policy-transmission.md`。商品企业建立现货/实现价/正常化价格及情景敏感性；与市场环境模块共用假设调整记录，避免重复分析和计价。
 
 ## 判断约束
+
+- 内在价值来自未来可归属普通股股东的现金与剩余资产，利润是线索而非价值本身。收入、利润、现金和再投资须由同一组经营假设连接；增长不自动创造价值，市场股价不等于内在价值。
+- 会计异常和管理层表述必须交叉核验；不得凭单项异常断言造假或藏利润，也不得把经营现金流当作不可美化的数据。关键证据不足时降低对应结论，不用安全边际替代核验。
 
 - 三阶段是研究组织方式，不能要求明显不通过的企业仍强行估值。先做底线判断：通过 / 不通过 / 证据不足。严重治理或偿付问题不能由其他高分抵消；“未发现”不等于证明不存在。
 - 质量复利、周期、资产折价、困境反转分开识别。未通过质量复利筛选不自动否定其他策略；不得无授权把报告改成另一种策略。
@@ -37,13 +40,13 @@ description: "分析 A 股公司的经营质量、股东回报与情景估值，
 
 ## 报告与工具
 
-默认按 `references/report-template.md` 输出中文完整报告；用户只要摘要时可缩减但保留影响结论的条件。研究产物默认保存在当前工作区 `reports/`，除非用户指定其他位置。同行用 `references/peer-comparison.md`，评分如有需要用 `references/scoring-rubric.md`。
+撰写或修改报告前读取 `references/writing-guidelines.md`：先回答读者的问题，关键数字解释含义，术语首次出现就近说明，保留判断条件与证据强弱。默认按 `references/report-template.md` 输出中文完整报告；用户只要摘要时可缩减但保留影响结论的条件。研究产物默认保存在当前工作区 `reports/`，除非用户指定其他位置。同行用 `references/peer-comparison.md`，评分如有需要用 `references/scoring-rubric.md`。
 
 - `scripts/fetch_analysis_inputs.py`：嵌入式数据源的基础输入；连接器/官方公告可补充或替代不可用源。
 - `scripts/fetch_peer_snapshot.py`：同行基础输入，行业字段仍须补齐。
 - `scripts/fetch_stock_universe.py`：按需更新股票列表。
 - `scripts/calc_profit_growth.py`：历史逐年、CAGR、每股与稀释分析；无预测合成率。
-- `scripts/calc_valuation_zone.py`：名称保留，v2 改为读取情景 JSON，计算内在价值与安全边际价格，不输出交易指令。使用方式见结论参考文件；旧 CLI/输出字段已停用。
+- `scripts/calc_valuation_zone.py`：名称保留，v2 改为读取情景 JSON，计算内在价值与安全边际价格；只计算给定输入，不代替业务预测或证据核验，不输出交易指令。使用方式见结论参考文件；旧 CLI/输出字段已停用。
 - `scripts/calc_commodity_sensitivity.py`：商品价格对归属经济敞口、利润、EPS和估值的条件敏感性；统一单位、期间、持股权益和传导假设。
 - `scripts/check_valuation_anchor.py`：行业方法库日期核查；日期通过不代表来源有效、方法适用或估值正确。
 
@@ -59,3 +62,5 @@ description: "分析 A 股公司的经营质量、股东回报与情景估值，
 - 市场环境与预期差有简要核查：相关指标、可追溯来源与日期、公司传导、价格隐含假设及模型调整依据；证据不足时明确缺口，不强求全指标宏观报告。
 - 有反证、跟踪触发条件、来源索引；计算实际运行且口径匹配。
 - 分别标注研究状态与估值状态，不把“企业不通过”当成研究未完成。
+- 可读性检查：摘要独立可读；正文先判断后证据；术语有解释，关键数字有含义；简化表达未丢失口径、条件和不确定性。
+- 估值输入可回溯到业务驱动及财报质量核验；短中长期情景包含收入、利润、现金、再投资和融资/稀释（或行业替代），缺口及影响明确；终值、时点和资本索取权不重复计价。
